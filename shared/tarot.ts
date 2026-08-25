@@ -26,3 +26,9 @@ export const tarotCards = [
 export type TarotCardId = (typeof tarotCards)[number]["id"];
 export const tarotFocuses = ["今日狀態", "關係與連結", "工作與財富", "自我照顧"] as const;
 export type TarotFocus = (typeof tarotFocuses)[number];
+
+export const tarotSpreadPositions = [
+  { id: "past", label: "過去", hint: "帶來此刻課題的經驗、模式或背景。" },
+  { id: "present", label: "現在", hint: "此刻最值得被看見的感受與位置。" },
+  { id: "future", label: "未來", hint: "若沿著覺察前進，正在形成的下一步方向。" },
+] as const;
