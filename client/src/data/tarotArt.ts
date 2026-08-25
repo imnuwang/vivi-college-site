@@ -4,7 +4,7 @@ import type { TarotCardId } from "@shared/tarot";
  * Classical Rider–Waite–Smith Major Arcana scans are public-domain assets.
  * See research/tarot-classic-license.md for source and license rationale.
  */
-const tarotArtBase = "https://raw.githubusercontent.com/imnuwang/vivi-college-site/master/netlify-assets/images/tarot-rws";
+const tarotArtBase = "/assets/images/tarot-rws";
 
 export const tarotArt: Record<TarotCardId, string> = {
   fool: `${tarotArtBase}/fool.jpg`,

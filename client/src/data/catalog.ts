@@ -62,7 +62,7 @@ export const leadCapture = {
  * Netlify-compatible static asset base. Images and free PDFs are versioned with the
  * public GitHub source so they no longer depend on the Manus deployment proxy.
  */
-const netlifyAssetBase = "https://raw.githubusercontent.com/imnuwang/vivi-college-site/master/netlify-assets";
+const netlifyAssetBase = "/assets";
 
 export const asset = {
   hero: `${netlifyAssetBase}/images/vivi-moonlit-library-hero.jpg`,
