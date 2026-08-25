@@ -14,6 +14,7 @@ import About from "./pages/About";
 import TarotDaily from "./pages/TarotDaily";
 import CreatorDiagnostic from "./pages/CreatorDiagnostic";
 import DownloadPage from "./pages/Download";
+import EnergyCards from "./pages/EnergyCards";
 import { SiteFrame } from "./components/SiteFrame";
 
 function Router() {
@@ -27,6 +28,7 @@ function Router() {
         <Route path={"/tools"} component={Tools} />
         <Route path={"/tarot-daily"} component={TarotDaily} />
         <Route path={"/creator-diagnostic"} component={CreatorDiagnostic} />
+        <Route path={"/energy-cards"} component={EnergyCards} />
         <Route path={"/services"} component={Services} />
         <Route path={"/shop"} component={Shop} />
         <Route path={"/download/:productId"} component={DownloadPage} />

@@ -30,6 +30,12 @@ const downloadItems: Record<string, { name: string; files: { label: string; url:
       { label: "內容承接地圖完整工具包 PDF", url: "#PASTE_GOOGLE_DRIVE_LINK_HERE" },
     ],
   },
+  "energy-first-aid": {
+    name: "把自己穿回來｜開口前3分鐘急救卡",
+    files: [
+      { label: "完整 12 卡急救系統 PDF", url: "#PASTE_GOOGLE_DRIVE_LINK_HERE" },
+    ],
+  },
 };
 
 export default function DownloadPage() {

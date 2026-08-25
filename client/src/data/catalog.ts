@@ -45,6 +45,8 @@ export type Product = {
   detail: string;
   image: string;
   badge?: string;
+  exploreUrl?: string;
+  exploreLabel?: string;
 };
 
 export const leadCapture = {
@@ -69,6 +71,18 @@ export const asset = {
   caseContent: "/manus-storage/50_df64136f.png",
   caseProblem: "/manus-storage/51_d2b6e6f4.png",
   caseAction: "/manus-storage/52_b7a8ce84.png",
+  energyFirstAid01: "/manus-storage/energy-source-0_076f4240.png",
+  energyFirstAid02: "/manus-storage/energy-source-2_af0dac7c.png",
+  energyFirstAid03: "/manus-storage/energy-source-1_62b6d6ca.png",
+  energyFirstAid04: "/manus-storage/energy-source-10_ee227b67.png",
+  energyFirstAid05: "/manus-storage/energy-source-6_9932f6fc.png",
+  energyFirstAid06: "/manus-storage/energy-source-9_f699918b.png",
+  energyFirstAid07: "/manus-storage/energy-source-3_5a50c047.png",
+  energyFirstAid08: "/manus-storage/energy-source-4_43780822.png",
+  energyFirstAid09: "/manus-storage/energy-source-5_430f8d54.png",
+  energyFirstAid10: "/manus-storage/energy-source-7_2c33d16f.png",
+  energyFirstAid11: "/manus-storage/energy-source-8_bb1c8902.png",
+  energyFirstAid12: "/manus-storage/energy-source-11_422c82ed.png",
 } as const;
 
 export const navItems = [
@@ -315,6 +329,20 @@ export const products: Product[] = [
     description: "給已開始接案的療癒型創作者，把內容、免費資源與諮詢入口串成一條路。",
     detail: "含內容主題盤點、資源入口模板、適配問卷題庫與自我檢查表。",
     image: asset.hero,
+  },
+  {
+    id: "energy-first-aid",
+    name: "把自己穿回來｜開口前3分鐘急救卡",
+    category: "數位工具",
+    price: 399,
+    priceLabel: "NT$399",
+    paymentUrl: "https://api.payuni.com.tw/api/uop/receive_info/2/1/NPPA221903464/n5IusOs29LTrZGEZkRiUW",
+    description: "當你要開口、面對人群、說出條件或設下界線時，用 3 分鐘讀懂狀態、回到身體，完成下一步。",
+    detail: "完整 12 張情境急救卡；含身體復位、衣物錨點、可複製出場句、場景卡組與可收藏處方。",
+    image: asset.energyFirstAid01,
+    badge: "3 分鐘急救系統",
+    exploreUrl: "/energy-cards",
+    exploreLabel: "先免費試用 12 張急救卡",
   },
 ];
 
