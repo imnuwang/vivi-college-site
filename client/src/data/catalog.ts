@@ -58,7 +58,11 @@ export const leadCapture = {
   description: "留下 Email，收到月光來信與後續免費工具更新；可隨時取消訂閱。",
 } as const;
 
-const netlifyAssetBase = "/assets";
+/**
+ * Netlify-compatible static asset base. Images and free PDFs are versioned with the
+ * public GitHub source so they no longer depend on the Manus deployment proxy.
+ */
+const netlifyAssetBase = "https://raw.githubusercontent.com/imnuwang/vivi-college-site/master/netlify-assets";
 
 export const asset = {
   hero: `${netlifyAssetBase}/images/vivi-moonlit-library-hero.jpg`,

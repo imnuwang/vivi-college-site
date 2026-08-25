@@ -20,6 +20,7 @@ const downloadItems: Record<string, { name: string; files: { label: string; url:
   "energy-reset-kit": {
     name: "能量回穩｜晚間小儀式包",
     files: [
+      { label: "引導音檔 MP3", url: "#PASTE_GOOGLE_DRIVE_LINK_HERE" },
       { label: "晚間引導卡 + 紀錄頁 PDF", url: "#PASTE_GOOGLE_DRIVE_LINK_HERE" },
     ],
   },
