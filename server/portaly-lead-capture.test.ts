@@ -13,9 +13,9 @@ describe("Portaly lead capture configuration", () => {
     expect(new URL(leadCapture.url).hostname).toBe("portaly.cc");
   });
 
-  it("keeps the three free tools directly downloadable while using Portaly as the main lead provider", () => {
+  it("keeps the three free tools directly downloadable from Netlify-compatible static assets while using Portaly as the main lead provider", () => {
     expect(tools).toHaveLength(3);
-    expect(tools.every((tool) => tool.downloadUrl.startsWith("/manus-storage/"))).toBe(true);
+    expect(tools.every((tool) => tool.downloadUrl.startsWith("https://raw.githubusercontent.com/imnuwang/vivi-college-site/master/netlify-assets/downloads/"))).toBe(true);
     expect(leadCapture.provider).toBe("Portaly");
   });
 
