@@ -55,7 +55,7 @@ describe("tarot reading input", () => {
 
     expect(page).toContain("過去、現在、未來");
     expect(page).toContain("setRevealedCount(index + 1)");
-    expect(page).toContain("readPastPresentFuture");
+    expect(page).toContain("buildSpreadReading");
     expect(page).toContain("tarot-spread-stage");
     expect(page).toContain("未來位不是預言");
     expect(router).toContain("readPastPresentFuture");
