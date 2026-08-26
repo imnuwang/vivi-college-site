@@ -7,7 +7,7 @@ import { Link } from "wouter";
 import { CtaBand } from "@/components/PagePrimitives";
 import { MoonMark, SectionEyebrow } from "@/components/SiteFrame";
 import { Seo } from "@/components/Seo";
-import { articles, asset, pillars, products, services, testimonials, tools } from "@/data/catalog";
+import { articles, asset, freeResources, pillars, services, testimonials, tools } from "@/data/catalog";
 
 export default function Home() {
   return (
@@ -92,8 +92,8 @@ export default function Home() {
       </section>
 
       <section className="section-space">
-        <div className="site-shell flex flex-col gap-7 md:flex-row md:items-end md:justify-between"><div><SectionEyebrow>THE SMALL SHOP</SectionEyebrow><h2 className="display-heading mt-4">把一點意圖，帶進日常。</h2></div><Link href="/shop" className="vivi-text-link">逛美心學苑選物 <ArrowRight className="size-4" /></Link></div>
-        <div className="site-shell mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{products.map((product) => <Link href="/shop" key={product.id} className="mini-product"><img src={product.image} alt="" /><div><span>{product.category}</span><h3>{product.name}</h3><p>{product.priceLabel}</p></div></Link>)}</div>
+        <div className="site-shell flex flex-col gap-7 md:flex-row md:items-end md:justify-between"><div><SectionEyebrow>THE FREE LIBRARY</SectionEyebrow><h2 className="display-heading mt-4">把一點意圖，<br />帶進今天真的用得上的練習。</h2></div><Link href="/shop" className="vivi-text-link">打開免費資源庫 <ArrowRight className="size-4" /></Link></div>
+        <div className="site-shell mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{freeResources.slice(0, 4).map((resource) => <Link href={resource.href} key={resource.id} className="mini-product"><img src={resource.image} alt="" /><div><span>{resource.category} · 免費</span><h3>{resource.name}</h3><p>{resource.action}</p></div></Link>)}</div>
       </section>
 
       <CtaBand title="如果你想先被理解一次，從適配諮詢開始。" description="給已經有助人專業、正在經營內容，卻仍說不清楚自己與服務價值的療癒型創作者。" href="/services#private-coaching" label="查看 1 對 1 私教" />

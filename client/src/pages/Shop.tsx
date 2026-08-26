@@ -1,33 +1,32 @@
 /**
- * Style guide — 月光書房：選物頁像一座有分類的私人書店；
- * 商品用途與交付方式先說清楚，PAYUNi 線上付款後由 Vivi 透過 LINE 交付數位檔案。
+ * Style guide — 月光書房：資源庫像一座可直接使用的私人書房；
+ * 每個入口都能立即開始，不以付款、下載或留下資料作為使用門檻。
  */
 import { useMemo, useState } from "react";
-import { ArrowRight, Check, CreditCard, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, Check, SlidersHorizontal, Sparkles } from "lucide-react";
 import { CtaBand, PageIntro } from "@/components/PagePrimitives";
 import { Seo } from "@/components/Seo";
 import { SectionEyebrow } from "@/components/SiteFrame";
-import { asset, products as catalogueProducts } from "@/data/catalog";
+import { asset, freeResources } from "@/data/catalog";
 import { Link } from "wouter";
 
 export default function Shop() {
   const [category, setCategory] = useState("全部");
-  const categories = useMemo(() => ["全部", ...Array.from(new Set(catalogueProducts.map((product) => product.category)))], []);
-  const products = useMemo(() => category === "全部" ? catalogueProducts : catalogueProducts.filter((product) => product.category === category), [category]);
+  const categories = useMemo(() => ["全部", ...Array.from(new Set(freeResources.map((resource) => resource.category)))], []);
+  const resources = useMemo(() => category === "全部" ? freeResources : freeResources.filter((resource) => resource.category === category), [category]);
 
   return (
     <>
-      <Seo title="美心學苑選物：數位工具與日常小儀式" description="美心學苑的精選工具：覺察筆記、意圖穿搭卡、能量回穩練習與療癒品牌內容承接工具。" path="/shop" image={asset.style} schema={{ "@context": "https://schema.org", "@type": "CollectionPage", name: "美心學苑選物", inLanguage: "zh-TW" }} />
-      <PageIntro kind="catalogue" chapter="04" eyebrow="THE SMALL SHOP · CHOOSE WITH INTENTION" title={<>不是更多東西。<br /><em>是一件能讓日常有方向的選物。</em></>} description="從可下載的練習工具，到能陪你慢慢回穩的晚間儀式，每一件選物都為了一個目的：讓你把想改變的感受，放進生活裡。" note="線上付款由 PAYUNi 統一金流處理；付款完成後，Vivi 會透過 LINE 交付數位檔案下載連結。" />
+      <Seo title="免費資源庫：覺察、回穩、穿搭與內容承接" description="美心學苑的免費可操作資源：七日覺察、意圖穿搭、晚間回穩、療癒品牌內容承接與 12 張急救卡。" path="/shop" image={asset.style} schema={{ "@context": "https://schema.org", "@type": "CollectionPage", name: "美心學苑免費資源庫", inLanguage: "zh-TW", isAccessibleForFree: true }} />
+      <PageIntro kind="catalogue" chapter="04" eyebrow="THE FREE LIBRARY · USE WITH INTENTION" title={<>不是更多東西。<br /><em>是一個你可以立刻打開的練習。</em></>} description="把覺察、穿搭、晚間回穩與內容定位，變成可以填寫、可以複製、也可以帶回明天的具體下一步。" note="全部免費使用 · 不需付款 · 不需先留下 Email" />
       <section className="section-space pt-10">
-        <div className="site-shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><div className="filter-row"><SlidersHorizontal className="mr-2 size-4 text-[#718177]" />{categories.map((entry) => <button key={entry} onClick={() => setCategory(entry)} className={category === entry ? "filter-chip filter-chip-active" : "filter-chip"}>{entry}</button>)}</div><p className="text-sm text-[#66766c]">{products.length} 件美心學苑選物</p></div>
+        <div className="site-shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><div className="filter-row"><SlidersHorizontal className="mr-2 size-4 text-[#718177]" />{categories.map((entry) => <button key={entry} onClick={() => setCategory(entry)} className={category === entry ? "filter-chip filter-chip-active" : "filter-chip"}>{entry}</button>)}</div><p className="text-sm text-[#66766c]">{resources.length} 份免費實作資源</p></div>
         <div className="site-shell mt-10 shop-grid">
-          {products.map((product) => { const isExplorable = Boolean(product.exploreUrl); return <article className={`product-card ${isExplorable ? "product-card-energy" : ""}`} key={product.id}><div className="product-image-wrap" style={{ backgroundImage: `url(${product.image ?? asset.hero})`, backgroundPosition: "center", backgroundSize: "cover" }}><img src={product.image} alt={product.name} />{product.badge && <span className="product-card-badge">{isExplorable ? "先免費體驗" : product.badge}</span>}</div><div className="product-card-copy"><p>{product.category}</p><h2>{product.name}</h2><span className="product-price">{product.priceLabel}</span><p className="product-description">{product.description}</p><div className="product-detail"><Check className="size-4" />{product.detail}</div>{isExplorable ? <p className="product-payment-note product-payment-note-explore">先免費體驗 12 張急救卡，再決定是否帶走可下載版本。</p> : <p className="product-payment-note">想把它帶回日常時，再進入安全付款；完成後交付數位檔案。</p>}{isExplorable ? <Link href={product.exploreUrl!} className="vivi-button vivi-button-energy mt-6 w-full">{product.exploreLabel} <ArrowRight className="size-4" /></Link> : <a href={product.paymentUrl} target="_blank" rel="noreferrer" className="vivi-button vivi-button-dark mt-6 w-full">想把它帶走 <CreditCard className="size-4" /></a>}</div></article>})}
+          {resources.map((resource) => <article className={`product-card ${resource.kind === "energy-cards" ? "product-card-energy" : ""}`} key={resource.id}><div className="product-image-wrap" style={{ backgroundImage: `url(${resource.image ?? asset.hero})`, backgroundPosition: "center", backgroundSize: "cover" }}><img src={resource.image} alt={resource.name} />{resource.badge && <span className="product-card-badge">{resource.badge}</span>}</div><div className="product-card-copy"><p>{resource.category}</p><h2>{resource.name}</h2><span className="inline-flex items-center gap-1 text-sm font-bold text-[#2f6b52]"><Sparkles className="size-4" />免費立即使用</span><p className="product-description">{resource.description}</p><div className="product-detail"><Check className="size-4" />{resource.detail}</div><p className="product-payment-note product-payment-note-explore">不需付款；選一個最像你當下狀態的入口，直接開始練習。</p><Link href={resource.href} className={resource.kind === "energy-cards" ? "vivi-button vivi-button-energy mt-6 w-full" : "vivi-button vivi-button-dark mt-6 w-full"}>{resource.action} <ArrowRight className="size-4" /></Link></div></article>)}
         </div>
       </section>
-      <section className="section-space border-y border-[#dbe3d9] bg-[#f7f4eb]"><div className="site-shell"><SectionEyebrow>ORDER & DELIVERY</SectionEyebrow><h2 className="display-heading mt-4">下單與交付流程</h2><div className="mt-8 grid gap-4 md:grid-cols-3"><article className="rounded-[1.35rem] border border-[#dbe3d9] bg-white p-6"><span className="font-serif text-3xl text-[#b18c4b]">01</span><h3 className="mt-4 font-serif text-2xl">前往付款</h3><p className="mt-3 text-sm leading-7 text-[#59675f]">點選「前往付款」，進入 PAYUNi 付款頁面完成線上付款。</p></article><article className="rounded-[1.35rem] border border-[#dbe3d9] bg-white p-6"><span className="font-serif text-3xl text-[#b18c4b]">02</span><h3 className="mt-4 font-serif text-2xl">確認訂單</h3><p className="mt-3 text-sm leading-7 text-[#59675f]">付款完成後，Vivi 會收到通知並確認你的訂單。</p></article><article className="rounded-[1.35rem] border border-[#dbe3d9] bg-white p-6"><span className="font-serif text-3xl text-[#b18c4b]">03</span><h3 className="mt-4 font-serif text-2xl">LINE 交付下載連結</h3><p className="mt-3 text-sm leading-7 text-[#59675f]">確認後，Vivi 會透過 LINE 交付數位檔案的下載連結。</p></article></div></div></section>
-      <section className="section-space bg-[#edf0e8]"><div className="site-shell shop-note-grid"><div><SectionEyebrow>BEFORE YOU ORDER</SectionEyebrow><h2 className="display-heading mt-4">選一件你真的會用的，<br />比收集很多更重要。</h2></div><div><p>這裡的商品設計成小而可持續的練習。它們不是快速解答，也不會替你做決定；但如果你願意每天留一點時間，它們可以讓你更容易聽見自己的方向。</p><p className="mt-4">線上付款由 PAYUNi 統一金流處理；付款完成後，Vivi 會透過 LINE 交付對應的數位檔案下載連結。</p></div></div></section>
-      <CtaBand eyebrow="BEFORE YOU BUY, YOU CAN READ" title="還不確定現在需要哪一種支持？" description="先讀一篇文章，或到免費工具室拿一份工作紙。好的選擇，通常從看清楚自己開始。" href="/tools" label="前往免費工具室" />
+      <section className="section-space border-y border-[#dbe3d9] bg-[#f7f4eb]"><div className="site-shell"><SectionEyebrow>HOW TO USE THE LIBRARY</SectionEyebrow><h2 className="display-heading mt-4">不用收集完。<br />只要從一個需要被照顧的地方開始。</h2><div className="mt-8 grid gap-4 md:grid-cols-3"><article className="rounded-[1.35rem] border border-[#dbe3d9] bg-white p-6"><span className="font-serif text-3xl text-[#b18c4b]">01</span><h3 className="mt-4 font-serif text-2xl">選一個現在的卡點</h3><p className="mt-3 text-sm leading-7 text-[#59675f]">不必全做。選一份最接近你今天狀態的資源。</p></article><article className="rounded-[1.35rem] border border-[#dbe3d9] bg-white p-6"><span className="font-serif text-3xl text-[#b18c4b]">02</span><h3 className="mt-4 font-serif text-2xl">把答案留下來</h3><p className="mt-3 text-sm leading-7 text-[#59675f]">寫下一句答案、複製一段提醒，或直接列印成你的練習頁。</p></article><article className="rounded-[1.35rem] border border-[#dbe3d9] bg-white p-6"><span className="font-serif text-3xl text-[#b18c4b]">03</span><h3 className="mt-4 font-serif text-2xl">明天只做一小步</h3><p className="mt-3 text-sm leading-7 text-[#59675f]">工具不替你決定；它幫你把下一步縮小到可以開始。</p></article></div></div></section>
+      <CtaBand eyebrow="WHEN YOU WANT A PERSON WITH YOU" title="工具先陪你整理；需要時，也可以有人陪你一起看。" description="當一個問題需要更貼近你的脈絡與支持，可以再看看美心學苑的一對一服務。" href="/services" label="探索深度服務" />
     </>
   );
 }

@@ -1,6 +1,6 @@
 /**
  * Style guide — 月光書房：暖米白紙頁、月桂墨綠書背、老金章節標記；
- * 導覽不搶內容，但任何時刻都能回到閱讀、工具、服務與選物的清楚路徑。
+ * 導覽不搶內容，但任何時刻都能回到閱讀、工具、服務與免費資源的清楚路徑。
  */
 import { Link, useLocation } from "wouter";
 import React, { useEffect, useState } from "react";
@@ -59,7 +59,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
           </nav>
           <div className="flex items-center gap-2">
             <PortalyLeadLink label="月光來信" className="header-letter hidden xl:inline-flex" />
-            <Link href="/shop" className="header-letter inline-flex">選物 <ArrowRight className="size-4" /></Link>
+            <Link href="/shop" className="header-letter inline-flex">免費資源 <ArrowRight className="size-4" /></Link>
             <button onClick={() => setMenuOpen((open) => !open)} className="menu-trigger lg:hidden" aria-label="開啟選單" aria-expanded={menuOpen}><Menu className="size-5" /></button>
           </div>
         </div>

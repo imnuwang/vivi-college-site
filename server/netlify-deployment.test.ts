@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { products, tools } from "../client/src/data/catalog";
+import { freeResources, tools } from "../client/src/data/catalog";
 
 const source = (path: string) => readFileSync(resolve(import.meta.dirname, "..", path), "utf8");
 
@@ -14,17 +14,19 @@ describe("Netlify 上架準備", () => {
     expect(tools.every((tool) => tool.downloadUrl.includes("netlify-assets/downloads/"))).toBe(true);
   });
 
-  it("keeps the evening ritual package PDF-only and ships SPA Netlify settings", () => {
-    const product = products.find((item) => item.id === "energy-reset-kit");
+  it("ships free resources without paid-download placeholders and keeps SPA Netlify settings", () => {
+    const resource = freeResources.find((item) => item.id === "energy-reset-kit");
     const config = source("netlify.toml");
     const guide = source("NETLIFY_DEPLOYMENT.md");
+    const app = source("client/src/App.tsx");
 
-    expect(product?.detail).toBe("引導卡與晚間紀錄頁 PDF。");
-    expect(product?.detail).not.toContain("音檔");
+    expect(resource?.detail).toContain("三步驟晚間收尾");
+    expect(freeResources.every((item) => !("paymentUrl" in item))).toBe(true);
     expect(config).toContain('command = "pnpm vite build"');
     expect(config).toContain('publish = "dist/public"');
     expect(config).toContain('from = "/*"');
     expect(guide).toContain("AI 塔羅的重要限制");
-    expect(guide).toContain("#PASTE_GOOGLE_DRIVE_LINK_HERE");
+    expect(app).not.toContain("DownloadPage");
+    expect(app).not.toContain('/download/:productId');
   });
 });

@@ -34,19 +34,17 @@ export type Article = {
   takeaways: string[];
 };
 
-export type Product = {
+export type FreeResource = {
   id: string;
+  kind: "clarity" | "style" | "evening" | "brand" | "energy-cards";
   name: string;
-  category: "數位工具" | "小儀式選物" | "美心學苑精選";
-  price: number;
-  priceLabel: string;
-  paymentUrl: string;
+  category: "自我覺察" | "意圖穿搭" | "晚間回穩" | "療癒創作" | "情境急救";
   description: string;
   detail: string;
   image: string;
   badge?: string;
-  exploreUrl?: string;
-  exploreLabel?: string;
+  href: string;
+  action: string;
 };
 
 export const leadCapture = {
@@ -62,7 +60,7 @@ export const leadCapture = {
  * Netlify-compatible static asset base. Images and free PDFs are versioned with the
  * public GitHub source so they no longer depend on the Manus deployment proxy.
  */
-const netlifyAssetBase = "/assets";
+const netlifyAssetBase = "https://raw.githubusercontent.com/imnuwang/vivi-college-site/master/netlify-assets";
 
 export const asset = {
   hero: `${netlifyAssetBase}/images/vivi-moonlit-library-hero.jpg`,
@@ -97,7 +95,7 @@ export const navItems = [
   { label: "塔羅抽牌", href: "/tarot-daily" },
   { label: "免費工具", href: "/tools" },
   { label: "服務", href: "/services" },
-  { label: "美心學苑選物", href: "/shop" },
+  { label: "免費資源庫", href: "/shop" },
   { label: "關於 Vivi", href: "/about" },
 ];
 
@@ -289,66 +287,66 @@ export const services = [
   },
 ];
 
-export const products: Product[] = [
+export const freeResources: FreeResource[] = [
   {
     id: "clarity-notebook",
+    kind: "clarity",
     name: "月光書房｜七日覺察筆記",
-    category: "數位工具",
-    price: 390,
-    priceLabel: "NT$390",
-    paymentUrl: "https://api.payuni.com.tw/api/uop/receive_info/2/1/NPPA221903464/CYs03hU9Bzugk6a6xt0eQ",
+    category: "自我覺察",
     description: "七天練習，從混亂訊號裡整理出你真正想靠近的方向。",
-    detail: "可下載 PDF；含每日提問、情緒追蹤與一頁回顧儀式。",
+    detail: "每日提問、訊號辨認與一個可在 10 分鐘內開始的小行動。",
     image: asset.tarot,
-    badge: "最適合剛開始整理自己",
+    badge: "7 天練習",
+    href: "/resources/clarity-notebook",
+    action: "開始七日覺察",
   },
   {
     id: "style-signal-cards",
+    kind: "style",
     name: "穿搭開運｜意圖風格卡",
-    category: "數位工具",
-    price: 490,
-    priceLabel: "NT$490",
-    paymentUrl: "https://api.payuni.com.tw/api/uop/receive_info/2/1/NPPA221903464/vampwVLR59QiNTO6hMFL7",
+    category: "意圖穿搭",
     description: "為約會、提案、休息與重啟日，挑選能替你說話的穿搭訊號。",
-    detail: "可列印 24 張風格提示卡；含色彩、剪裁與配件指引。",
+    detail: "依場景選出色彩、輪廓與一個配件錨點，完成今日穿搭句。",
     image: asset.style,
+    badge: "3 種場景",
+    href: "/resources/style-signal-cards",
+    action: "選一張意圖卡",
   },
   {
     id: "energy-reset-kit",
-    name: "能量回穩｜晚間小儀式包",
-    category: "小儀式選物",
-    price: 680,
-    priceLabel: "NT$680",
-    paymentUrl: "https://api.payuni.com.tw/api/uop/receive_info/2/1/NPPA221903464/N2V4PL8JC7KEHsnit4zY9",
+    kind: "evening",
+    name: "能量回穩｜晚間小儀式",
+    category: "晚間回穩",
     description: "為忙碌與耗能的晚上，保留一段能慢慢回到自己的時間。",
-    detail: "引導卡與晚間紀錄頁 PDF。",
+    detail: "三步驟晚間收尾、可勾選回穩清單與一段明日交代。",
     image: asset.energy,
-    badge: "晚間練習",
+    badge: "10 分鐘",
+    href: "/resources/energy-reset-kit",
+    action: "開始晚間回穩",
   },
   {
     id: "brand-foundation",
+    kind: "brand",
     name: "療癒品牌｜內容承接地圖",
-    category: "美心學苑精選",
-    price: 1280,
-    priceLabel: "NT$1,280",
-    paymentUrl: "https://api.payuni.com.tw/api/uop/receive_info/2/1/NPPA221903464/x79qt87ygdwAhvK8b94t6",
+    category: "療癒創作",
     description: "給已開始接案的療癒型創作者，把內容、免費資源與諮詢入口串成一條路。",
-    detail: "含內容主題盤點、資源入口模板、適配問卷題庫與自我檢查表。",
+    detail: "用三個欄位完成你的服務定位句與三個可發布的內容入口。",
     image: asset.hero,
+    badge: "3 欄完成",
+    href: "/resources/brand-foundation",
+    action: "畫出內容承接地圖",
   },
   {
     id: "energy-first-aid",
+    kind: "energy-cards",
     name: "把自己穿回來｜開口前3分鐘急救卡",
-    category: "數位工具",
-    price: 399,
-    priceLabel: "NT$399",
-    paymentUrl: "https://api.payuni.com.tw/api/uop/receive_info/2/1/NPPA221903464/n5IusOs29LTrZGEZkRiUW",
+    category: "情境急救",
     description: "當你要開口、面對人群、說出條件或設下界線時，用 3 分鐘讀懂狀態、回到身體，完成下一步。",
     detail: "完整 12 張情境急救卡；含身體復位、衣物錨點、可複製出場句、場景卡組與可收藏處方。",
     image: asset.energyFirstAid01,
-    badge: "3 分鐘急救系統",
-    exploreUrl: "/energy-cards",
-    exploreLabel: "先免費試用 12 張急救卡",
+    badge: "完整免費體驗",
+    href: "/energy-cards",
+    action: "探索 12 張急救卡",
   },
 ];
 

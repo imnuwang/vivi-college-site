@@ -13,8 +13,8 @@ import Shop from "./pages/Shop";
 import About from "./pages/About";
 import TarotDaily from "./pages/TarotDaily";
 import CreatorDiagnostic from "./pages/CreatorDiagnostic";
-import DownloadPage from "./pages/Download";
 import EnergyCards from "./pages/EnergyCards";
+import ResourceLibrary from "./pages/ResourceLibrary";
 import { SiteFrame } from "./components/SiteFrame";
 
 function Router() {
@@ -31,7 +31,7 @@ function Router() {
         <Route path={"/energy-cards"} component={EnergyCards} />
         <Route path={"/services"} component={Services} />
         <Route path={"/shop"} component={Shop} />
-        <Route path={"/download/:productId"} component={DownloadPage} />
+        <Route path={"/resources/:resourceId"} component={ResourceLibrary} />
         <Route path={"/about"} component={About} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />

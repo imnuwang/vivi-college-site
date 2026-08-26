@@ -12,7 +12,7 @@
 | Publish directory | `dist/public` |
 | Node version | `22` |
 
-根目錄的 `netlify.toml` 已包含上述建置設定與 SPA redirect。這能讓 `/shop`、`/energy-cards`、`/download/energy-first-aid` 等 Wouter 前端路由在直接開啟時回到 React 應用程式處理。
+根目錄的 `netlify.toml` 已包含上述建置設定與 SPA redirect。這能讓 `/shop`、`/energy-cards`、`/resources/clarity-notebook` 等 Wouter 前端路由在直接開啟時回到 React 應用程式處理。
 
 ## 已遷移的靜態資產
 
@@ -20,15 +20,13 @@
 
 | 類型 | GitHub 路徑 |
 |---|---|
-| 品牌、首頁、案例與商品圖片 | `netlify-assets/images/` |
+| 品牌、首頁、案例與免費資源圖片 | `netlify-assets/images/` |
 | 12 張急救卡圖片 | `netlify-assets/images/energy-cards/` |
 | 免費 PDF 工具 | `netlify-assets/downloads/` |
 
-## 上架前必填：付費商品下載檔
+## 免費內容版本
 
-`client/src/pages/Download.tsx` 仍使用 `#PASTE_GOOGLE_DRIVE_LINK_HERE` 佔位字串。請將每一項付費商品實際交付的 PDF 上傳到 Google Drive，設定為「知道連結的使用者可檢視」，再逐一替換該檔案內的佔位網址。
-
-> PAYUNi 簡易收款連結不會自動導回網站。正確流程仍是：買家在 PAYUNi 完成付款 → Vivi 收到付款通知 → Vivi 透過 LINE 人工傳送 `/download/:productId` 下載頁連結。
+目前網站採用免費內容策略。原先的五項商品已改為可直接使用的免費練習或互動工具，不需要 PAYUNi、Google Drive 交付連結或付款後下載頁。三份既有免費 PDF 持續由 `netlify-assets/downloads/` 提供；七日覺察、意圖穿搭、晚間回穩與內容承接地圖則以 `/resources/:resourceId` 的可填寫頁面直接提供。
 
 ## AI 塔羅的重要限制
 
