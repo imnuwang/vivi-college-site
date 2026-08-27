@@ -106,6 +106,7 @@
   "scripts": {
     "prebuild": "node scripts/clean-dist.mjs",
     "build": "vite build",
+    "postbuild": "node scripts/generate-static-routes.mjs",
     "check": "tsc --noEmit",
     "db:push": "drizzle-kit generate && drizzle-kit migrate",
     "dev": "vite",

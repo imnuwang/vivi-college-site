@@ -13,7 +13,7 @@ import { CtaBand } from "@/components/PagePrimitives";
 import { PortalyLeadLink } from "@/components/PortalyLeadLink";
 import { Seo } from "@/components/Seo";
 import { MoonMark, SectionEyebrow } from "@/components/SiteFrame";
-import { asset, services, socialLinks, testimonials } from "@/data/catalog";
+import { asset, services, socialLinks } from "@/data/catalog";
 
 const specs = [
   ["陪跑期間", "12 週，從定位、內容到服務承接分階段推進。"],
@@ -218,34 +218,6 @@ export default function Services() {
                 <span>{number}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-space bg-[#183b31] text-[#f8f2e8]">
-        <div className="site-shell evidence-grid">
-          <div>
-            <SectionEyebrow className="text-[#e6c886]">
-              REAL CASE MATERIALS
-            </SectionEyebrow>
-            <h2 className="display-heading mt-4 text-[#f8f2e8]">
-              把調整前後放在一起看，才知道方向有沒有更清楚。
-            </h2>
-            <p className="mt-5 max-w-lg text-[#d4e1d5]">
-              這些案例不把流量直接說成成交，也不保證每個人都有同樣結果。它們記錄的是問題、調整方式與可追溯的變化。
-            </p>
-          </div>
-          <div className="evidence-stack">
-            {testimonials.map(item => (
-              <article className="evidence-card" key={item.metric}>
-                <img src={item.image} alt={`案例資料：${item.metric}`} />
-                <div>
-                  <strong>{item.metric}</strong>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
               </article>
             ))}
           </div>

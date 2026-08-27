@@ -423,7 +423,7 @@ function BrandPractice() {
                 key={prompt}
                 className="flex gap-3 rounded-xl bg-[#f8f5ec] p-4"
               >
-                <span className="font-serif text-xl text-[#b18c4b]">
+                <span className="font-serif text-xl text-[#745823]">
                   0{index + 1}
                 </span>
                 <p className="text-sm leading-6 text-[#536158]">{prompt}</p>

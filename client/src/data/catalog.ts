@@ -74,11 +74,6 @@ export const asset = {
   seal: `${publicAssetBase}/images/vivi-meixin-academy-moon-star-emblem.png`,
   viviPortrait: `${publicAssetBase}/images/JZ6_7995.jpg`,
   originalLogo: `${publicAssetBase}/images/vivi-original-logo.png`,
-  caseGrowth: `${publicAssetBase}/images/case-growth.png`,
-  caseBeforeAfter: `${publicAssetBase}/images/case-before-after.png`,
-  caseContent: `${publicAssetBase}/images/case-content.png`,
-  caseProblem: `${publicAssetBase}/images/case-problem.png`,
-  caseAction: `${publicAssetBase}/images/case-action.png`,
   energyFirstAid01: `${publicAssetBase}/images/energy-cards/energy-card-01.webp`,
   energyFirstAid02: `${publicAssetBase}/images/energy-cards/energy-card-02.webp`,
   energyFirstAid03: `${publicAssetBase}/images/energy-cards/energy-card-03.webp`,
@@ -384,23 +379,6 @@ export const freeResources: FreeResource[] = [
     badge: "完整免費體驗",
     href: "/energy-cards",
     action: "探索 12 張急救卡",
-  },
-];
-
-export const testimonials = [
-  {
-    metric: "1,644 → 96,572",
-    title: "內容開始說對話，不再只靠運氣被看見",
-    description:
-      "從重新整理受眾場景、內容主軸與鉤子邏輯開始，讓訊息更容易被真正需要的人理解。",
-    image: asset.caseGrowth,
-  },
-  {
-    metric: "定位前後",
-    title: "同一個人，不同做法，內容結果完全不同",
-    description:
-      "帳號不再只是分享，而是開始留下清楚的受眾印象與可累積的內容方向。",
-    image: asset.caseBeforeAfter,
   },
 ];
 

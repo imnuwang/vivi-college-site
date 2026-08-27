@@ -1,11 +1,11 @@
 [build]
-  command = "pnpm vite build"
-  publish = "dist/public"
+  command = "pnpm build"
+  publish = "dist/client"
 
 [build.environment]
   NODE_VERSION = "22"
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404

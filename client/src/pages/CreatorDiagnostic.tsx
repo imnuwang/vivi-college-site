@@ -183,7 +183,7 @@ export default function CreatorDiagnostic() {
                     }
                   >
                     <legend className="font-serif text-2xl leading-snug text-[#183b31]">
-                      <span className="mr-3 font-sans text-xs font-bold tracking-[.14em] text-[#b18c4b]">
+                      <span className="mr-3 font-sans text-xs font-bold tracking-[.14em] text-[#745823]">
                         0{index + 1}
                       </span>
                       {question.prompt}
@@ -215,7 +215,7 @@ export default function CreatorDiagnostic() {
             ) : (
               <div className="diagnostic-result" aria-live="polite">
                 <SectionEyebrow>YOUR CURRENT SIGNAL</SectionEyebrow>
-                <p className="mt-5 text-sm font-bold tracking-[.12em] text-[#b18c4b]">
+                <p className="mt-5 text-sm font-bold tracking-[.12em] text-[#745823]">
                   {result.label}
                 </p>
                 <h2 className="mt-3 font-serif text-4xl leading-tight text-[#183b31]">
@@ -226,7 +226,7 @@ export default function CreatorDiagnostic() {
                 </p>
                 <div className="mt-7 grid gap-4 sm:grid-cols-2">
                   <article className="rounded-2xl bg-[#edf0e8] p-5">
-                    <Sparkles className="size-5 text-[#b18c4b]" />
+                    <Sparkles className="size-5 text-[#745823]" />
                     <h3 className="mt-3 font-serif text-xl text-[#183b31]">
                       你現在最該看見的訊號
                     </h3>

@@ -23,13 +23,25 @@ describe("Netlify 上架準備", () => {
     const config = source("netlify.toml");
     const guide = source("NETLIFY_DEPLOYMENT.md");
     const app = source("client/src/App.tsx");
+    const packageJson = source("package.json");
+    const generator = source("scripts/generate-static-routes.mjs");
+    const notFound = source("client/public/404.html");
 
     expect(resource?.detail).toContain("三步驟晚間收尾");
     expect(freeResources.every(item => !("paymentUrl" in item))).toBe(true);
-    expect(config).toContain('command = "pnpm vite build"');
-    expect(config).toContain('publish = "dist/public"');
+    expect(config).toContain('command = "pnpm build"');
+    expect(config).toContain('publish = "dist/client"');
     expect(config).toContain('from = "/*"');
-    expect(guide).toContain("AI 塔羅的重要限制");
+    expect(config).toContain('to = "/404.html"');
+    expect(config).toContain("status = 404");
+    expect(packageJson).toContain(
+      '"postbuild": "node scripts/generate-static-routes.mjs"'
+    );
+    expect(generator).toContain('"/journal/from-top-sales-to-healing"');
+    expect(generator).toContain('"/energy-cards"');
+    expect(generator).toContain('"/policies"');
+    expect(notFound).toContain('content="noindex,follow"');
+    expect(guide).toContain("不是 AI 即時解讀");
     expect(app).not.toContain("DownloadPage");
     expect(app).not.toContain("/download/:productId");
   });

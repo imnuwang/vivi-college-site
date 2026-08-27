@@ -12,7 +12,6 @@ import {
   asset,
   freeResources,
   services,
-  testimonials,
   tools,
 } from "@/data/catalog";
 
@@ -257,49 +256,6 @@ export default function Home() {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      <section
-        className="section-space bg-[#183b31] text-[#f8f2e8]"
-        aria-labelledby="student-evidence-heading"
-      >
-        <div className="site-shell evidence-grid">
-          <div>
-            <SectionEyebrow className="text-[#e6c886]">
-              STUDENT EVIDENCE · REAL CASE MATERIALS
-            </SectionEyebrow>
-            <h2
-              id="student-evidence-heading"
-              className="display-heading mt-4 text-[#f8f2e8]"
-            >
-              學員見證：
-              <br />
-              專業被聽懂後，內容開始往前走。
-            </h2>
-            <p className="mt-5 max-w-lg text-[#d4e1d5]">
-              以下採用 Vivi
-              已提供的實際案例截圖與成果摘要。我們不把單一數字說成保證，而是看見：受眾、內容與承接被重新整理後，能留下哪些可追溯的訊號。
-            </p>
-            <Link
-              href="/services"
-              className="vivi-button vivi-button-light mt-7"
-            >
-              了解深度服務 <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <div className="evidence-stack">
-            {testimonials.map(item => (
-              <article className="evidence-card" key={item.metric}>
-                <img src={item.image} alt={`已提供案例截圖：${item.metric}`} />
-                <div>
-                  <strong>{item.metric}</strong>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

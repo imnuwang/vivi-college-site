@@ -5,7 +5,7 @@
 | 網站用途 | GitHub 靜態檔案 |
 |---|---|
 | 首頁／品牌圖片 | `netlify-assets/images/vivi-*.jpg`、`netlify-assets/images/vivi-*.png` |
-| Vivi 人像與案例佐證 | `netlify-assets/images/JZ6_7995.jpg`、`case-*.png` |
+| Vivi 人像 | `netlify-assets/images/JZ6_7995.jpg` |
 | 急救卡互動頁 | `netlify-assets/images/energy-cards/energy-card-01.png` 至 `energy-card-12.png` |
 | 免費工具下載 | `netlify-assets/downloads/*.pdf` |
 

@@ -3,7 +3,7 @@
  * 導覽不搶內容，但任何時刻都能回到閱讀、工具、服務與免費資源的清楚路徑。
  */
 import { Link, useLocation } from "wouter";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, Instagram, Menu, X } from "lucide-react";
 import { PortalyLeadLink } from "@/components/PortalyLeadLink";
 import { asset, navItems, socialLinks } from "@/data/catalog";
@@ -38,6 +38,9 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [routeAnnouncement, setRouteAnnouncement] = useState("");
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const previousLocationRef = useRef(location);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12);
@@ -47,6 +50,8 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
+    const routeChanged = previousLocationRef.current !== location;
+    previousLocationRef.current = location;
     setMenuOpen(false);
     const frame = window.requestAnimationFrame(() => {
       const hash = window.location.hash.slice(1);
@@ -55,9 +60,27 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
       } else {
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       }
+      if (routeChanged) {
+        const main = document.getElementById("main-content");
+        main?.focus({ preventScroll: true });
+        const heading = main?.querySelector("h1")?.textContent?.trim();
+        setRouteAnnouncement(`${heading || "新頁面"}已載入`);
+      }
     });
     return () => window.cancelAnimationFrame(frame);
   }, [location]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      setMenuOpen(false);
+      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   const isImmersiveRoute =
     location === "/" ||
@@ -120,10 +143,12 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
               免費資源 <ArrowRight className="size-4" />
             </Link>
             <button
+              ref={menuButtonRef}
               onClick={() => setMenuOpen(open => !open)}
               className="menu-trigger lg:hidden"
               aria-label={menuOpen ? "關閉選單" : "開啟選單"}
               aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
             >
               {menuOpen ? (
                 <X className="size-5" />
@@ -133,34 +158,37 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
             </button>
           </div>
         </div>
-        <div
-          className={cn(
-            "mobile-menu lg:hidden",
-            menuOpen && "mobile-menu-open"
-          )}
-          aria-hidden={!menuOpen}
-        >
-          <nav className="site-shell py-4" aria-label="行動版導覽">
-            {navItems.map(item => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="mobile-nav-link"
-              >
-                {item.label}
-                <ArrowRight className="size-4" />
-              </Link>
-            ))}
-            <PortalyLeadLink
-              label="訂閱月光來信"
-              className="mobile-nav-link w-full"
-            />
-          </nav>
-        </div>
+        {menuOpen && (
+          <div
+            id="mobile-navigation"
+            className="mobile-menu mobile-menu-open lg:hidden"
+          >
+            <nav className="site-shell py-4" aria-label="行動版導覽">
+              {navItems.map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="mobile-nav-link"
+                  aria-current={location === item.href ? "page" : undefined}
+                >
+                  {item.label}
+                  <ArrowRight className="size-4" />
+                </Link>
+              ))}
+              <PortalyLeadLink
+                label="訂閱月光來信"
+                className="mobile-nav-link w-full"
+              />
+            </nav>
+          </div>
+        )}
       </header>
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
+      <p className="sr-only" role="status" aria-live="polite">
+        {routeAnnouncement}
+      </p>
       <footer className="site-footer">
         <div className="site-shell grid gap-10 py-14 md:grid-cols-[1.15fr_.85fr_.85fr] md:py-18">
           <div>
@@ -221,11 +249,16 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="border-t border-white/10">
-          <div className="site-shell flex flex-col gap-2 py-5 text-xs text-[#a8bda9] sm:flex-row sm:items-center sm:justify-between">
+          <div className="site-shell flex flex-col gap-3 py-5 text-xs text-[#a8bda9] sm:flex-row sm:items-center sm:justify-between">
             <span>© 2026 VIVI COLLEGE 美心學苑. All rights reserved.</span>
-            <span>
-              靈性內容僅供自我探索與日常參考，不替代醫療、法律或財務專業意見。
-            </span>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <Link href="/policies" className="footer-link">
+                隱私與服務條款
+              </Link>
+              <span>
+                靈性內容僅供自我探索與日常參考，不替代醫療、法律或財務專業意見。
+              </span>
+            </div>
           </div>
         </div>
       </footer>

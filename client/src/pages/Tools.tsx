@@ -139,7 +139,7 @@ export default function Tools() {
                 <FileText className="mt-10 size-8" />
                 <h2>{tool.title}</h2>
                 <p>{tool.description}</p>
-                <p className="mt-4 border-l-2 border-[#b18c4b] pl-3 text-sm leading-6 text-[#426258]">
+                <p className="mt-4 border-l-2 border-[#745823] pl-3 text-sm leading-6 text-[#426258]">
                   完成後，你會：{tool.outcome}
                 </p>
                 <div className="tool-card-bottom">
@@ -266,7 +266,7 @@ export default function Tools() {
       </section>
       <section className="section-space">
         <div className="site-shell tool-trust">
-          <LockKeyhole className="size-7 text-[#b18c4b]" />
+          <LockKeyhole className="size-7 text-[#745823]" />
           <div>
             <h2>
               若你在 Portaly 留下

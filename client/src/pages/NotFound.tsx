@@ -4,5 +4,25 @@ import { Link } from "wouter";
 import { Seo } from "@/components/Seo";
 
 export default function NotFound() {
-  return <><Seo title="找不到這一頁" description="這一頁可能已移動，請回到美心學苑首頁繼續探索。" path="/404" /><section className="not-found"><div><p>404 · LOST BETWEEN CHAPTERS</p><h1>這一頁暫時不在書架上。</h1><span>你可以回到首頁，或從閱讀室重新開始。</span><Link href="/" className="vivi-button vivi-button-dark mt-7"><ArrowLeft className="size-4" />回到首頁</Link></div></section></>;
+  return (
+    <>
+      <Seo
+        title="找不到這一頁"
+        description="這一頁可能已移動，請回到美心學苑首頁繼續探索。"
+        path="/404"
+        robots="noindex,follow"
+      />
+      <section className="not-found">
+        <div>
+          <p>404 · LOST BETWEEN CHAPTERS</p>
+          <h1>這一頁暫時不在書架上。</h1>
+          <span>你可以回到首頁，或從閱讀室重新開始。</span>
+          <Link href="/" className="vivi-button vivi-button-dark mt-7">
+            <ArrowLeft className="size-4" />
+            回到首頁
+          </Link>
+        </div>
+      </section>
+    </>
+  );
 }

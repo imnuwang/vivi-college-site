@@ -1,4 +1,11 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   ArrowRight,
   Bookmark,
@@ -440,6 +447,14 @@ export default function EnergyCards() {
   const [running, setRunning] = useState(false);
   const [protocolIndex, setProtocolIndex] = useState(0);
   const [toast, setToast] = useState("");
+  const timerTriggerRef = useRef<HTMLButtonElement>(null);
+  const timerDialogRef = useRef<HTMLDivElement>(null);
+
+  const closeTimer = useCallback(() => {
+    setTimerOpen(false);
+    setRunning(false);
+    window.requestAnimationFrame(() => timerTriggerRef.current?.focus());
+  }, []);
 
   useEffect(() => {
     const raw = localStorage.getItem(storageKey);
@@ -468,6 +483,44 @@ export default function EnergyCards() {
     const id = window.setInterval(() => setSeconds(value => value - 1), 1000);
     return () => window.clearInterval(id);
   }, [running, seconds]);
+  useEffect(() => {
+    if (!timerOpen) return;
+    const dialog = timerDialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.requestAnimationFrame(() => {
+      dialog?.querySelector<HTMLElement>("[data-timer-close]")?.focus();
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeTimer();
+        return;
+      }
+      if (event.key !== "Tab" || !dialog) return;
+      const focusable = Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [closeTimer, timerOpen]);
   useEffect(() => {
     if (!toast) return;
     const id = window.setTimeout(() => setToast(""), 2600);
@@ -675,6 +728,7 @@ export default function EnergyCards() {
                   key={scenario.id}
                   className={activeScenario?.id === scenario.id ? "active" : ""}
                   onClick={() => chooseScenario(scenario)}
+                  aria-pressed={activeScenario?.id === scenario.id}
                 >
                   <b>{scenario.title}</b>
                   <small>{scenario.short}</small>
@@ -842,6 +896,7 @@ export default function EnergyCards() {
             <blockquote>「{selected.command}」</blockquote>
             <div className="ec-actions">
               <button
+                ref={timerTriggerRef}
                 type="button"
                 className="ec-run"
                 onClick={() => {
@@ -890,7 +945,7 @@ export default function EnergyCards() {
           </div>
         </section>
         <section id="energy-mine" className="ec-mine">
-          <SectionEyebrow className="text-[#a9874d]">
+          <SectionEyebrow className="text-[#6f5428]">
             MY FIRST-AID KIT
           </SectionEyebrow>
           <h2>我為自己留下的急救卡</h2>
@@ -945,7 +1000,7 @@ export default function EnergyCards() {
         </section>
         <section className="ec-take-home">
           <div>
-            <SectionEyebrow className="text-[#a9874d]">
+            <SectionEyebrow className="text-[#6f5428]">
               KEEP EXPLORING FOR FREE
             </SectionEyebrow>
             <h2>
@@ -974,28 +1029,30 @@ export default function EnergyCards() {
       </main>
       {timerOpen && (
         <div
+          ref={timerDialogRef}
           className="ec-timer-modal"
           role="dialog"
           aria-modal="true"
-          aria-label="三分鐘急救計時器"
+          aria-labelledby="energy-timer-title"
+          aria-describedby="energy-timer-description"
         >
           <div>
             <button
               type="button"
               className="ec-close"
-              onClick={() => {
-                setTimerOpen(false);
-                setRunning(false);
-              }}
+              onClick={closeTimer}
               aria-label="結束計時"
+              data-timer-close
             >
               <X size={18} />
             </button>
-            <SectionEyebrow className="text-[#a9874d]">
+            <SectionEyebrow className="text-[#6f5428]">
               急救進行中
             </SectionEyebrow>
-            <h2>{selected.title}</h2>
-            <p>依序完成三個小步驟。不必做到完美。</p>
+            <h2 id="energy-timer-title">{selected.title}</h2>
+            <p id="energy-timer-description">
+              依序完成三個小步驟。不必做到完美。
+            </p>
             <strong>{time}</strong>
             <div className="ec-timer-note">
               <b>現在做：</b>

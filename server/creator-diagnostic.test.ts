@@ -51,11 +51,9 @@ describe("療癒型創作者內容承接診斷", () => {
     expect(pageSource).toContain("diagnostic-result");
   });
 
-  it("labels the homepage evidence section as real supplied student case material", () => {
-    expect(homeSource).toContain("STUDENT EVIDENCE · REAL CASE MATERIALS");
-    expect(homeSource.replace(/\s+/g, " ")).toContain(
-      "Vivi 已提供的實際案例截圖與成果摘要"
-    );
-    expect(homeSource).toContain("testimonials.map");
+  it("does not publish unverified student case material", () => {
+    expect(homeSource).not.toContain("STUDENT EVIDENCE · REAL CASE MATERIALS");
+    expect(homeSource).not.toContain("testimonials.map");
+    expect(homeSource).not.toContain("case-");
   });
 });

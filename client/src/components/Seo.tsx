@@ -8,13 +8,19 @@ type SeoProps = {
   description: string;
   path: string;
   image?: string;
+  robots?: "index,follow" | "noindex,follow";
   schema?: Record<string, unknown> | Record<string, unknown>[];
 };
 
 const baseUrl = "https://vivicollege.com";
 const brandName = "VIVI COLLEGE 美心學苑";
 
-function upsertMeta(selector: string, attribute: "name" | "property", key: string, content: string) {
+function upsertMeta(
+  selector: string,
+  attribute: "name" | "property",
+  key: string,
+  content: string
+) {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
   if (!element) {
     element = document.createElement("meta");
@@ -24,22 +30,81 @@ function upsertMeta(selector: string, attribute: "name" | "property", key: strin
   element.content = content;
 }
 
-export function Seo({ title, description, path, image, schema }: SeoProps) {
+function upsertCanonical(url: string) {
+  let element = document.head.querySelector<HTMLLinkElement>(
+    'link[rel="canonical"]'
+  );
+  if (!element) {
+    element = document.createElement("link");
+    element.rel = "canonical";
+    document.head.appendChild(element);
+  }
+  element.href = url;
+}
+
+export function Seo({
+  title,
+  description,
+  path,
+  image = "/assets/images/vivi-moonlit-library-hero.jpg",
+  robots = "index,follow",
+  schema,
+}: SeoProps) {
   useEffect(() => {
     const url = `${baseUrl}${path}`;
+    const absoluteImage = new URL(image, baseUrl).href;
     document.title = `${title}｜${brandName}`;
+    upsertCanonical(url);
     upsertMeta('meta[name="description"]', "name", "description", description);
-    upsertMeta('meta[property="og:title"]', "property", "og:title", `${title}｜${brandName}`);
-    upsertMeta('meta[property="og:description"]', "property", "og:description", description);
+    upsertMeta('meta[name="robots"]', "name", "robots", robots);
+    upsertMeta(
+      'meta[property="og:title"]',
+      "property",
+      "og:title",
+      `${title}｜${brandName}`
+    );
+    upsertMeta(
+      'meta[property="og:description"]',
+      "property",
+      "og:description",
+      description
+    );
     upsertMeta('meta[property="og:url"]', "property", "og:url", url);
     upsertMeta('meta[property="og:type"]', "property", "og:type", "website");
-    upsertMeta('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
-    if (image) {
-      upsertMeta('meta[property="og:image"]', "property", "og:image", image);
-      upsertMeta('meta[name="twitter:image"]', "name", "twitter:image", image);
-    }
+    upsertMeta(
+      'meta[name="twitter:card"]',
+      "name",
+      "twitter:card",
+      "summary_large_image"
+    );
+    upsertMeta(
+      'meta[property="og:image"]',
+      "property",
+      "og:image",
+      absoluteImage
+    );
+    upsertMeta(
+      'meta[name="twitter:title"]',
+      "name",
+      "twitter:title",
+      `${title}｜${brandName}`
+    );
+    upsertMeta(
+      'meta[name="twitter:description"]',
+      "name",
+      "twitter:description",
+      description
+    );
+    upsertMeta(
+      'meta[name="twitter:image"]',
+      "name",
+      "twitter:image",
+      absoluteImage
+    );
 
-    let script = document.head.querySelector<HTMLScriptElement>("script[data-vivi-schema]");
+    let script = document.head.querySelector<HTMLScriptElement>(
+      "script[data-vivi-schema]"
+    );
     if (!script) {
       script = document.createElement("script");
       script.type = "application/ld+json";
@@ -54,9 +119,9 @@ export function Seo({ title, description, path, image, schema }: SeoProps) {
         description,
         url,
         inLanguage: "zh-TW",
-      },
+      }
     );
-  }, [title, description, path, image, schema]);
+  }, [title, description, path, image, robots, schema]);
 
   return null;
 }
