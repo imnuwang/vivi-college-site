@@ -11,7 +11,8 @@ type DestinationId =
   | "application"
   | "portaly"
   | "srt-application"
-  | "srt-notion";
+  | "srt-notion"
+  | "srt-reiki-source";
 
 const destinations = {
   line: {
@@ -59,6 +60,15 @@ const destinations = {
     backHref: "/srt-healing",
     eventName: "srt_notion_open" as const,
   },
+  "srt-reiki-source": {
+    name: "Vivi 的 CRRA 靈氣課程資料",
+    title: "準備查看 CRRA 資格來源頁",
+    description:
+      "這個 Portaly 課程頁是 Vivi 現有的 CRRA 課程資料來源，用來核對頁面列示的「CRRA 認證首席導師」名稱，不代表醫療或心理專業資格。",
+    action: "開啟 CRRA 課程資料",
+    backHref: "/srt-healing",
+    eventName: "portaly_open" as const,
+  },
 } satisfies Record<
   DestinationId,
   {
@@ -103,7 +113,13 @@ const completionDetails = {
   },
   "srt-notion": {
     message:
-      "你已回到美心學苑。Notion 內容是 Vivi 的 SRT 靈性觀點與完整資料，請保留自己的判斷。",
+      "你已回到 Vivi 的 SRT 服務說明。Notion 內容是 Vivi 的靈性觀點與完整資料，請保留自己的判斷。",
+    nextHref: "/srt-healing",
+    nextLabel: "回到 SRT 服務說明",
+  },
+  "srt-reiki-source": {
+    message:
+      "你已回到 Vivi 的 SRT 服務說明。CRRA 課程頁用來核對資格名稱，請把證書與服務結果分開理解。",
     nextHref: "/srt-healing",
     nextLabel: "回到 SRT 服務說明",
   },
@@ -117,6 +133,8 @@ function getDestinationUrl(destinationId: DestinationId) {
   if (destinationId === "portaly") return leadCapture.url;
   if (destinationId === "srt-application") return socialLinks.srtApplication;
   if (destinationId === "srt-notion") return socialLinks.srtNotion;
+  if (destinationId === "srt-reiki-source")
+    return "https://portaly.cc/vivi168/page/ReikiMaster";
 
   const message = new URLSearchParams(window.location.search).get("message");
   return message ? buildLineMessageUrl(message) : socialLinks.line;

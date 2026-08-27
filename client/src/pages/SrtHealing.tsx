@@ -3,7 +3,9 @@
  * Claims stay inside the source material while medical and outcome guarantees are excluded.
  */
 import {
+  Award,
   ArrowRight,
+  BookOpenCheck,
   Check,
   CircleHelp,
   ClipboardList,
@@ -12,6 +14,7 @@ import {
   MessageCircleHeart,
   ShieldCheck,
   Sparkles,
+  UsersRound,
 } from "lucide-react";
 import { Link } from "wouter";
 import { Seo } from "@/components/Seo";
@@ -35,6 +38,33 @@ const themes = [
     "長期繞不出去的情緒模式",
     "同一種不安、壓力或耗能感反覆出現，希望換一個角度理解。",
   ],
+] as const;
+
+const credentials = [
+  {
+    title: "SRA 靈性回應協會高階執行師",
+    description:
+      "依 Vivi 現有 SRT 服務簡介列示。這代表她接受過該體系的進階訓練，服務會依既有架構整理，不是臨場憑感覺解讀。",
+    source: "Vivi 的 SRT 完整說明",
+    href: "/continue/srt-notion",
+    icon: Award,
+  },
+  {
+    title: "CRRA 認證首席導師",
+    description:
+      "依 Vivi 現有豐盛金錢靈氣課程資料列示。這段靈氣訓練背景，讓她熟悉如何把抽象的能量語言整理成清楚步驟與日常練習。",
+    source: "Vivi 的 CRRA 課程資料",
+    href: "/continue/srt-reiki-source",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "從 2010 年開始的服務與帶領經驗",
+    description:
+      "Vivi 的個人簡介記錄了近 5,000 筆電商評價、逾 1,000 人團隊帶領，以及後續的塔羅教學、療癒與個人品牌陪伴。這些不是 SRT 個案數，價值在於她理解現實生活裡的關係、工作與選擇壓力。",
+    source: "關於 Vivi 與個人簡介",
+    href: "/about",
+    icon: UsersRound,
+  },
 ] as const;
 
 const steps = [
@@ -78,6 +108,10 @@ const faqs = [
     "有身心症狀也適合做嗎？",
     "身心不適需要先由合格醫療或心理專業評估。SRT 不提供診斷或治療，也不應取代正在進行的專業照護。",
   ],
+  [
+    "頁面上的證書代表什麼？",
+    "這些名稱表示 Vivi 在相應的靈性療癒與靈氣體系中接受過訓練或認證。它們不是醫師、心理師或其他醫事專業資格，也不代表療效或結果保證。",
+  ],
 ] as const;
 
 export default function SrtHealing() {
@@ -94,8 +128,8 @@ export default function SrtHealing() {
           name: "SRT 靈性回應療法",
           description: srtService.summary,
           provider: {
-            "@type": "Organization",
-            name: "VIVI COLLEGE 美心學苑",
+            "@type": "Person",
+            name: "Vivi",
           },
           areaServed: "TW",
           serviceType: "遠距靈性自我探索服務",
@@ -195,7 +229,7 @@ export default function SrtHealing() {
         <div className="site-shell srt-intro-grid">
           <div>
             <SectionEyebrow>WHAT SRT MEANS HERE</SectionEyebrow>
-            <h2 className="display-heading mt-4">在美心學苑，SRT 怎麼使用？</h2>
+            <h2 className="display-heading mt-4">Vivi 怎麼進行 SRT？</h2>
             <p>
               SRT 是 Spiritual Response Therapy 的縮寫。Vivi
               會透過這套靈性架構，協助你整理一個反覆出現的生活主題，並把本次內容轉成可閱讀的報告與日常建議。
@@ -213,6 +247,54 @@ export default function SrtHealing() {
               </p>
               <Link href="/policies">閱讀服務與取消退款說明</Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space srt-credentials-section">
+        <div className="site-shell">
+          <div className="srt-credentials-heading">
+            <div>
+              <SectionEyebrow>WHY BOOK WITH VIVI</SectionEyebrow>
+              <h2 className="display-heading mt-4">
+                你預約的，是 Vivi 本人的服務。
+              </h2>
+            </div>
+            <p>
+              資格不是拿來保證療效，而是讓你知道 Vivi
+              接受過哪些體系訓練，以及她為什麼能把一次抽象的靈性整理，交付成你讀得懂的報告與下一步。
+            </p>
+          </div>
+          <div className="srt-credentials-grid">
+            {credentials.map(credential => {
+              const Icon = credential.icon;
+              const sourceContent = (
+                <>
+                  {credential.source}
+                  {credential.href.startsWith("/continue/") ? (
+                    <ExternalLink aria-hidden="true" />
+                  ) : (
+                    <ArrowRight aria-hidden="true" />
+                  )}
+                </>
+              );
+
+              return (
+                <article key={credential.title}>
+                  <Icon aria-hidden="true" />
+                  <h3>{credential.title}</h3>
+                  <p>{credential.description}</p>
+                  <Link href={credential.href}>{sourceContent}</Link>
+                </article>
+              );
+            })}
+          </div>
+          <div className="srt-credential-boundary">
+            <ShieldCheck aria-hidden="true" />
+            <p>
+              <strong>資格界線：</strong>
+              上述為靈性療癒與靈氣體系內的訓練、認證及第一手經歷，不是醫師、心理師或其他醫事專業證照，也不代表任何療效或結果保證。
+            </p>
           </div>
         </div>
       </section>

@@ -42,6 +42,23 @@ describe("SRT core healing path", () => {
     expect(transition).toContain("姓名、Email、生日、所在城市、LINE ID");
   });
 
+  it("frames SRT as Vivi's service and explains credentials without medical claims", () => {
+    const page = source("client/src/pages/SrtHealing.tsx");
+    const home = source("client/src/pages/Home.tsx");
+    const servicesPage = source("client/src/pages/Services.tsx");
+    const transition = source("client/src/pages/ExternalStep.tsx");
+
+    expect(page).toContain("SRA 靈性回應協會高階執行師");
+    expect(page).toContain("CRRA 認證首席導師");
+    expect(page).toContain("這些不是 SRT 個案數");
+    expect(page).toContain("不是醫師、心理師或其他醫事專業證照");
+    expect(page).not.toContain("在美心學苑");
+    expect(home).not.toContain("美心學苑的核心療癒工具");
+    expect(servicesPage).not.toContain("美心學苑以 SRT");
+    expect(page).toContain("/continue/srt-reiki-source");
+    expect(transition).toContain("CRRA 資格來源頁");
+  });
+
   it("keeps Portaly as a planned website-first path rather than publishing it", () => {
     const plan = source("PORTALY_SRT_LISTING.md");
 

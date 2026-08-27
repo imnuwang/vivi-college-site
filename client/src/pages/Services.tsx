@@ -70,7 +70,7 @@ export default function Services() {
     <>
       <Seo
         title="一對一服務：SRT 療癒、塔羅與療癒品牌私教"
-        description="美心學苑以 SRT 靈性回應療法為核心，另有一對一塔羅、能量整理與療癒師自媒體品牌私教。"
+        description="Vivi 以 SRT 靈性回應療法為核心，另有一對一塔羅、能量整理與療癒師自媒體品牌私教。"
         path="/services"
         image={asset.viviPortrait}
         schema={{
@@ -112,8 +112,8 @@ export default function Services() {
               <em>再選適合的服務。</em>
             </h1>
             <p>
-              美心學苑以 SRT
-              靈性回應療法為核心，也保留塔羅、能量整理與療癒品牌私教。先了解方法、條件與界線，再決定是否預約。
+              SRT 靈性回應療法是 Vivi
+              的核心療癒服務，也保留塔羅、能量整理與療癒品牌私教。先了解方法、條件與界線，再決定是否預約。
             </p>
             <div className="inner-page-hero-actions">
               <Link

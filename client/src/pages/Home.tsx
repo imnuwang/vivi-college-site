@@ -59,7 +59,7 @@ export default function Home() {
     <>
       <Seo
         title="SRT 療癒、自我成長與療癒品牌內容"
-        description="美心學苑以 SRT 靈性回應療法為核心，提供自我探索、免費練習、塔羅日籤與療癒品牌內容診斷。"
+        description="Vivi 以 SRT 靈性回應療法為核心，提供自我探索、免費練習、塔羅日籤與療癒品牌內容診斷。"
         path="/"
         image={asset.homeHeroDesktop}
         schema={{
@@ -187,7 +187,7 @@ export default function Home() {
           <div className="home-srt-copy">
             <SectionEyebrow>VIVI'S CORE HEALING METHOD</SectionEyebrow>
             <h2>
-              美心學苑的核心療癒工具，
+              Vivi 的核心療癒工具，
               <br />是 SRT 靈性回應療法。
             </h2>
             <p>
