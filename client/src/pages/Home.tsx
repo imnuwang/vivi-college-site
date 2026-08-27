@@ -50,7 +50,7 @@ export default function Home() {
         title="療癒、自我成長與療癒品牌內容"
         description="美心學苑提供低潮陪伴、自我探索、免費練習與療癒品牌內容診斷，陪你先照顧自己，也把有能力的自己說清楚。"
         path="/"
-        image={asset.innerGardenHero}
+        image={asset.homeHeroDesktop}
         schema={{
           "@context": "https://schema.org",
           "@graph": [
@@ -71,12 +71,14 @@ export default function Home() {
         }}
       />
       <section className="hero-home">
-        <img
-          className="hero-home-atmosphere"
-          src={asset.innerGardenHero}
-          alt=""
-          aria-hidden="true"
-        />
+        <picture className="hero-home-picture">
+          <source media="(max-width: 800px)" srcSet={asset.homeHeroMobile} />
+          <img
+            className="hero-home-atmosphere"
+            src={asset.homeHeroDesktop}
+            alt="美心學苑創辦人 Vivi 坐在暖光與深綠植物交織的室內花園裡"
+          />
+        </picture>
         <div className="site-shell hero-home-grid">
           <div className="hero-home-copy">
             <SectionEyebrow>VIVI COLLEGE · HEALING & GROWTH</SectionEyebrow>
@@ -121,17 +123,10 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <figure className="hero-portrait-wrap">
-            <img
-              src={asset.viviPortrait}
-              alt="VIVI COLLEGE 美心學苑創辦人 Vivi"
-              className="hero-portrait"
-            />
-            <figcaption>
-              <span>Vivi｜美心學苑創辦人</span>
-              我走過低潮，也知道把感受整理成生活，需要時間。
-            </figcaption>
-          </figure>
+          <div className="hero-home-caption">
+            <span>Vivi｜美心學苑創辦人</span>
+            我走過低潮，也知道把感受整理成生活，需要時間。
+          </div>
         </div>
       </section>
 

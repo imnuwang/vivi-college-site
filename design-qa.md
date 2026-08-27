@@ -156,4 +156,34 @@
 - Production build passed.
 - Vitest: 9 files passed, 33 tests passed.
 
+## Round 5: homepage hero photographic fidelity
+
+### Visual truth and evidence
+
+- User-reported mismatch: `C:\Users\user\AppData\Local\Temp\codex-clipboard-567bc9d8-bb02-49d6-9da4-a2fb19f72563.png` showed a separately framed portrait that did not match the selected integrated scene.
+- Selected reference: `C:\Users\user\AppData\Local\Temp\codex-clipboard-2df11b1b-b5d8-461d-ae2f-892b9969f5b3.png`.
+- Clean landscape asset: `client/public/assets/images/vivi-home-inner-garden-desktop.jpg`.
+- Clean mobile asset: `client/public/assets/images/vivi-home-inner-garden-mobile.jpg`.
+- Desktop implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-home-photo-fix-2026-08-27\home-after-desktop.png`.
+- Mobile implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-home-photo-fix-2026-08-27\home-after-mobile.png`.
+- Same-input comparison: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-home-photo-fix-2026-08-27\reference-vs-home.png`.
+
+### Fidelity review and fixes
+
+- P1 fixed: the homepage no longer composites a separate rectangular portrait over the forest background. Vivi, the leather chair, the warm interior light, and the garden frame now belong to one continuous photograph.
+- P1 fixed: the real implementation previously contradicted the selected reference even though the QA note had accepted the difference. The desktop scene now follows the reference's right-third portrait, dark left-side copy area, and uninterrupted room depth.
+- P2 fixed: the mobile layout uses a dedicated portrait crop instead of forcing the desktop landscape image into a narrow viewport.
+- P2 fixed: the generated source images were converted to quality-90 JPEG assets, reducing the two hero files from approximately 3.5 MB combined to approximately 388 KB combined.
+- P3 accepted: the current homepage serves both self-care readers and healing professionals, so its existing dual-path headline and CTA content remain unchanged while the photography is corrected.
+
+### Functional checks
+
+- Desktop viewport 1536 x 1024 and mobile viewport 390 x 844 load the intended responsive image source.
+- Both viewport sizes have zero broken images and no horizontal overflow.
+- The primary self-care CTA still opens `/energy-cards` and browser back returns to `/`.
+- Browser console shows no warning or error entries after the updated homepage load and CTA navigation.
+- TypeScript check passed.
+- Production build passed.
+- Vitest: 9 files passed, 33 tests passed.
+
 final result: passed

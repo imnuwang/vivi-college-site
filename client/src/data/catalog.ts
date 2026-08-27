@@ -66,6 +66,8 @@ const publicAssetBase = "/assets";
 export const asset = {
   hero: `${publicAssetBase}/images/vivi-moonlit-library-hero.jpg`,
   innerGardenHero: `${publicAssetBase}/images/vivi-inner-garden-hero.webp`,
+  homeHeroDesktop: `${publicAssetBase}/images/vivi-home-inner-garden-desktop.jpg`,
+  homeHeroMobile: `${publicAssetBase}/images/vivi-home-inner-garden-mobile.jpg`,
   tarot: `${publicAssetBase}/images/vivi-tarot-journal.jpg`,
   energy: `${publicAssetBase}/images/vivi-energy-ritual.jpg`,
   style: `${publicAssetBase}/images/vivi-style-luck.jpg`,
