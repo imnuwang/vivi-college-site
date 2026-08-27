@@ -453,7 +453,7 @@ export default function EnergyCards() {
   const closeTimer = useCallback(() => {
     setTimerOpen(false);
     setRunning(false);
-    window.requestAnimationFrame(() => timerTriggerRef.current?.focus());
+    window.setTimeout(() => timerTriggerRef.current?.focus(), 0);
   }, []);
 
   useEffect(() => {
@@ -488,10 +488,6 @@ export default function EnergyCards() {
     const dialog = timerDialogRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    window.requestAnimationFrame(() => {
-      dialog?.querySelector<HTMLElement>("[data-timer-close]")?.focus();
-    });
-
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -1043,6 +1039,7 @@ export default function EnergyCards() {
               onClick={closeTimer}
               aria-label="結束計時"
               data-timer-close
+              autoFocus
             >
               <X size={18} />
             </button>
