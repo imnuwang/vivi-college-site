@@ -3107,6 +3107,115 @@ summary:focus-visible {
   font-size: 13px;
   line-height: 1.85;
 }
+.tarot-garden-hero::after,
+.about-garden-hero::after {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 15, 10, 0.95) 0%,
+    rgba(4, 20, 14, 0.76) 51%,
+    rgba(4, 17, 12, 0.34) 100%
+  );
+}
+.tarot-hero-visual {
+  position: relative;
+  width: min(100%, 410px);
+  justify-self: center;
+  align-self: end;
+  margin: 55px 0 44px;
+  padding: 30px 45px 78px;
+  border: 1px solid rgba(230, 200, 134, 0.3);
+  background: rgba(9, 38, 29, 0.78);
+  box-shadow: 0 28px 80px rgba(1, 13, 9, 0.42);
+}
+.tarot-hero-visual > img {
+  width: 100%;
+  height: 450px;
+  border: 1px solid rgba(241, 221, 175, 0.48);
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.78) contrast(1.04);
+}
+.tarot-hero-visual figcaption {
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  left: 22px;
+  color: #dce5dc;
+  font-family: "Noto Serif TC", serif;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.tarot-hero-visual figcaption span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gold-soft);
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.tarot-ritual-section {
+  background:
+    radial-gradient(
+      circle at 82% 12%,
+      rgba(209, 174, 99, 0.1),
+      transparent 30%
+    ),
+    #f4eee2;
+}
+.about-hero-portrait > img {
+  object-position: 42% 17%;
+}
+.about-story-section {
+  background: #f6f0e4;
+}
+.about-story-editorial {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.6fr) minmax(0, 1.4fr);
+  gap: clamp(48px, 8vw, 112px);
+  align-items: start;
+}
+.about-story-editorial > aside {
+  display: grid;
+  align-content: start;
+  min-height: 420px;
+  padding: 28px;
+  border-top: 1px solid var(--gold);
+  background: #15372d;
+  color: #f8f2e8;
+}
+.about-story-editorial > aside > span {
+  color: var(--gold-soft);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 46px;
+  font-style: italic;
+}
+.about-story-editorial > aside .moon-mark {
+  margin: auto;
+}
+.about-story-editorial > aside p {
+  align-self: end;
+  margin: 42px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(230, 200, 134, 0.25);
+  color: #d7e2d9;
+  font-family: "Noto Serif TC", serif;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.about-story-editorial > div > p {
+  color: #5d6e63;
+  line-height: 2;
+}
+.about-story-editorial blockquote {
+  margin: 32px 0 0;
+  padding: 22px 0 22px 24px;
+  border-left: 2px solid var(--gold);
+  color: #2f5e4c;
+  font-family: "Noto Serif TC", serif;
+  font-size: 20px;
+  line-height: 1.75;
+}
 .service-hero-portrait {
   position: relative;
   width: min(100%, 485px);
@@ -3777,6 +3886,17 @@ summary:focus-visible {
     border-top: 1px solid #d2d9d1;
     border-left: 0;
   }
+  .tarot-hero-visual {
+    width: min(72vw, 410px);
+    justify-self: end;
+    margin-top: 8px;
+  }
+  .about-story-editorial {
+    grid-template-columns: 1fr;
+  }
+  .about-story-editorial > aside {
+    min-height: 280px;
+  }
   .service-path-nav .site-shell {
     grid-template-columns: 1fr;
   }
@@ -4162,6 +4282,19 @@ summary:focus-visible {
     align-items: flex-start;
     flex-direction: column;
     gap: 12px;
+  }
+  .tarot-hero-visual {
+    width: min(82vw, 360px);
+    justify-self: center;
+    margin: 12px 0 38px;
+    padding: 22px 34px 74px;
+  }
+  .tarot-hero-visual > img {
+    height: 390px;
+  }
+  .about-story-editorial > aside {
+    min-height: 250px;
+    padding: 24px;
   }
   .coaching-feature-copy {
     padding: 32px 24px;

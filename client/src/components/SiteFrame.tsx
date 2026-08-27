@@ -67,6 +67,9 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
     location === "/tools" ||
     location === "/shop" ||
     location === "/creator-diagnostic" ||
+    location === "/tarot-daily" ||
+    location === "/energy-cards" ||
+    location === "/about" ||
     location.startsWith("/resources/");
 
   return (

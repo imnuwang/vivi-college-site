@@ -13,3 +13,206 @@
 @media(max-width:900px){.energy-cards-page .ec-hero{grid-template-columns:1fr}.energy-cards-page .ec-hero-controls{justify-content:flex-start;max-width:none}.energy-cards-page .ec-hero-controls>span{text-align:left}.energy-cards-page .ec-mood-engine{grid-template-columns:1fr}.energy-cards-page .ec-grid{grid-template-columns:repeat(2,1fr)}.energy-cards-page .ec-symptom-card:nth-child(1),.energy-cards-page .ec-symptom-card:nth-child(8){grid-column:span 1}.energy-cards-page .ec-symptom-card:nth-child(3n+2){transform:none}.energy-cards-page .ec-rescue{grid-template-columns:1fr}}
 @media(max-width:720px){.energy-cards-page .ec-shell{width:min(100% - 24px,1120px);padding-top:26px}.energy-cards-page .ec-promise{align-items:flex-start;flex-direction:column;gap:3px}.energy-cards-page .ec-mood-form{padding:19px}.energy-cards-page .ec-mood-input{align-items:stretch;flex-wrap:wrap}.energy-cards-page .ec-mood-input input{min-height:33px}.energy-cards-page .ec-mood-input button{width:100%;justify-content:center}.energy-cards-page .ec-scene-quick{grid-template-columns:1fr 1fr}.energy-cards-page .ec-scene-quick>span{grid-column:1/-1}.energy-cards-page .ec-scene-pack{grid-template-columns:1fr;padding:18px 15px}.energy-cards-page .ec-scene-card-list{grid-template-columns:1fr}.energy-cards-page .ec-recommendation{grid-template-columns:1fr}.energy-cards-page .ec-recommendation>span{padding:0 0 7px}.energy-cards-page .ec-filter{align-items:flex-start;flex-direction:column;padding-left:15px}.energy-cards-page .ec-filter>small{margin-top:-12px}.energy-cards-page .ec-grid{grid-template-columns:1fr}.energy-cards-page .ec-symptom-card{grid-template-columns:92px 1fr;min-height:126px}.energy-cards-page .ec-rescue-image{min-height:430px}.energy-cards-page .ec-rescue-body{padding:24px}.energy-cards-page .ec-rescue-image>div{left:24px;right:24px;bottom:24px}.energy-cards-page .ec-rescue-image>span{left:24px;top:24px}.energy-cards-page .ec-protocol,.energy-cards-page .ec-prescriptions,.energy-cards-page .ec-saved-list{grid-template-columns:1fr}.energy-cards-page .ec-protocol>div{min-height:0;border-right:0;border-bottom:1px solid var(--ec-line)}.energy-cards-page .ec-protocol>div:last-child{border-bottom:0}.energy-cards-page .ec-actions,.energy-cards-page .ec-checkin,.energy-cards-page .ec-take-home{align-items:stretch;flex-direction:column;grid-template-columns:1fr}.energy-cards-page .ec-run{width:100%}.energy-cards-page .ec-mine{padding:24px 17px}.energy-cards-page .ec-take-home{padding:24px 17px;gap:20px}.energy-cards-page .ec-take-home-action{min-width:0}.energy-cards-page .ec-timer-modal strong{font-size:70px}}
 @media(prefers-reduced-motion:reduce){.energy-cards-page *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Inner garden opening for the full interactive card journey */
+.energy-cards-page .ec-hero {
+  position: relative;
+  width: 100vw;
+  min-height: 742px;
+  margin: -46px 0 0 calc(50% - 50vw);
+  overflow: hidden;
+  border: 0;
+  background: #071710;
+  color: #f8f2e8;
+  padding: 76px 0 0;
+}
+.energy-cards-page {
+  margin-top: -76px;
+}
+.energy-cards-page .ec-hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(2, 15, 10, .95), rgba(4, 20, 14, .76) 51%, rgba(4, 17, 12, .32));
+  content: "";
+  pointer-events: none;
+}
+.energy-cards-page .ec-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.82) contrast(1.05) brightness(.72);
+}
+.energy-cards-page .ec-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(1220px, calc(100% - 40px));
+  min-height: 666px;
+  grid-template-columns: minmax(0, 1.03fr) minmax(380px, .72fr);
+  gap: 58px;
+  align-items: end;
+  margin: auto;
+}
+.energy-cards-page .ec-hero-intro {
+  align-self: center;
+  max-width: 730px;
+  padding: 58px 0 46px;
+}
+.energy-cards-page .ec-hero .section-eyebrow {
+  color: #e6c886;
+}
+.energy-cards-page .ec-hero h1 {
+  max-width: 730px;
+  margin: 19px 0 0;
+  color: #f8f2e8;
+  font: 700 clamp(3.15rem, 5vw, 4.8rem)/1.16 var(--ec-serif);
+  letter-spacing: -.07em;
+}
+.energy-cards-page .ec-hero h1 em {
+  color: #e4c178;
+}
+.energy-cards-page .ec-hero p {
+  max-width: 650px;
+  margin-top: 24px;
+  color: #dce5dc;
+  font-size: 15px;
+  line-height: 1.95;
+}
+.energy-cards-page .ec-hero-start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  margin-top: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #f8f2e8;
+  color: #183b31;
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.energy-cards-page .ec-hero-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  color: #cad8cc;
+  font-size: 11px;
+}
+.energy-cards-page .ec-hero-visual {
+  position: relative;
+  width: min(100%, 480px);
+  justify-self: end;
+  align-self: end;
+  margin-top: 48px;
+}
+.energy-cards-page .ec-hero-visual>img {
+  width: 100%;
+  height: 545px;
+  object-fit: cover;
+  object-position: 22% 10%;
+  filter: saturate(.72) contrast(1.04) brightness(.88);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 100%);
+}
+.energy-cards-page .ec-hero-visual figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 26px;
+  width: min(88%, 340px);
+  padding: 16px 18px;
+  border: 1px solid rgba(230, 200, 134, .34);
+  background: rgba(66, 24, 34, .94);
+  color: #f5e9e9;
+  font: 13px/1.75 var(--ec-serif);
+}
+.energy-cards-page .ec-hero-visual figcaption span {
+  display: block;
+  margin-bottom: 5px;
+  color: #e6c886;
+  font: 700 9px var(--ec-sans);
+  letter-spacing: .1em;
+}
+.energy-cards-page .ec-hero-controls {
+  max-width: none;
+  margin: 20px 0 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ec-line);
+}
+.energy-cards-page .ec-hero-controls>span {
+  width: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+@media(max-width:900px) {
+  .energy-cards-page .ec-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .energy-cards-page .ec-hero-intro {
+    padding-bottom: 22px;
+  }
+  .energy-cards-page .ec-hero-visual {
+    width: min(76vw, 520px);
+    justify-self: end;
+    margin-top: 0;
+  }
+  .energy-cards-page .ec-hero-visual>img {
+    height: 430px;
+  }
+}
+
+@media(max-width:720px) {
+  .energy-cards-page .ec-hero {
+    min-height: auto;
+    margin-top: -26px;
+    padding-top: 66px;
+  }
+  .energy-cards-page {
+    margin-top: -66px;
+  }
+  .energy-cards-page .ec-hero-inner {
+    width: min(100% - 26px, 1220px);
+    min-height: auto;
+  }
+  .energy-cards-page .ec-hero-intro {
+    padding: 68px 0 24px;
+  }
+  .energy-cards-page .ec-hero h1 {
+    font-size: clamp(2.55rem, 12vw, 3.35rem);
+    line-height: 1.18;
+  }
+  .energy-cards-page .ec-hero p {
+    font-size: 14px;
+  }
+  .energy-cards-page .ec-hero-start {
+    width: 100%;
+  }
+  .energy-cards-page .ec-hero-visual {
+    width: calc(100% + 13px);
+    margin-right: -13px;
+    margin-bottom: 36px;
+  }
+  .energy-cards-page .ec-hero-visual>img {
+    height: 360px;
+  }
+  .energy-cards-page .ec-hero-visual figcaption {
+    right: 12px;
+    bottom: -25px;
+    left: 12px;
+    width: auto;
+    font-size: 11px;
+  }
+  .energy-cards-page .ec-hero-controls {
+    align-items: flex-start;
+  }
+  .energy-cards-page .ec-hero-controls>span {
+    width: 100%;
+  }
+}

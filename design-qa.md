@@ -120,4 +120,40 @@
 - Production build passed.
 - Vitest: 9 files passed, 33 tests passed.
 
+## Round 4: tarot ritual, energy cards, and about Vivi
+
+### Visual truth and evidence
+
+- Source visual truth: `C:\Users\user\.codex\generated_images\01a03dbb-b8aa-7660-9f7b-95c918f185ea\exec-a6ab8533-785b-4b37-ad11-43c6176123fe.png`.
+- Tarot implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-final-core-round-2026-08-27\tarot-daily-desktop.png`.
+- Energy-card implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-final-core-round-2026-08-27\energy-cards-desktop.png`.
+- About implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-final-core-round-2026-08-27\about-desktop.png`.
+- Desktop CSS viewport: 1536 x 1024. Mobile CSS viewport: 390 x 844.
+- Same-input comparison: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-final-core-round-2026-08-27\comparison-reference-final-core.png`.
+- State: initial tarot, energy-card, and about views. Tarot draw states, energy recommendation and timer states, and about-page navigation were separately exercised.
+
+### Fidelity review
+
+- All three pages now open inside the same forest, warm-light, serif, ivory, and muted-gold system as the selected direction.
+- Tarot uses a real Rider-Waite-Smith card image as the main ritual object. Energy cards use an existing complete outfit asset. About Vivi uses the supplied real portrait.
+- Each page keeps a distinct product identity: tarot feels contemplative, energy cards add a restrained berry accent, and the about page stays portrait-led and editorial.
+- Headline wrapping is balanced at desktop and mobile sizes. First actions are visible before the fold, while the next functional section remains partially visible on desktop.
+- P0/P1: none remaining.
+- P2 fixed: tarot and about previously opened with the repeated pale `PageIntro` composition. Both now have route-specific immersive openings.
+- P2 fixed: the energy-card hero previously read as a large presentation title followed by controls. It now opens with a clear use moment, a visual card anchor, and a direct path to the recommendation field.
+- P2 fixed: the energy-card immersive header initially sat above the hero on a pale strip because the page root clipped the negative margin. The root and hero offsets were corrected at desktop and mobile breakpoints.
+- P3 accepted: the energy-card image is an illustration already supplied by the project, so it remains visually distinct from Vivi's photographic portrait while sharing the same environmental frame.
+
+### Functional checks
+
+- Tarot single-card mode draws and reveals one card, then renders a complete reflection. Three-card mode reveals all three positions and renders the spread reading.
+- Energy recommendation maps a salary concern to `CARD 04｜談薪資就想退`.
+- Energy cards can be saved locally. The three-minute modal opens at `03:00`, advances to the next protocol step, and closes cleanly.
+- About-page hero navigation aligns `#vivi-story` at the top, and the service CTA opens `/services`.
+- Browser console has no warning or error entries after the exercised flows.
+- Desktop and 390 px mobile layouts show no visible clipping or horizontal overflow.
+- TypeScript check passed.
+- Production build passed.
+- Vitest: 9 files passed, 33 tests passed.
+
 final result: passed
