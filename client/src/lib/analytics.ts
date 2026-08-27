@@ -3,6 +3,8 @@ export type ConversionEventName =
   | "service_cta_click"
   | "line_click"
   | "application_open"
+  | "srt_application_open"
+  | "srt_notion_open"
   | "portaly_open"
   | "resource_download"
   | "resource_start"
@@ -92,9 +94,7 @@ export function trackConversion(
   } else {
     enqueueConversion({ eventName, eventProperties });
   }
-  window.dispatchEvent(
-    new CustomEvent("vivi:conversion", { detail: payload })
-  );
+  window.dispatchEvent(new CustomEvent("vivi:conversion", { detail: payload }));
 }
 
 export function trackPageView(path: string, title: string) {

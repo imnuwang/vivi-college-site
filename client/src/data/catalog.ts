@@ -91,7 +91,7 @@ export const asset = {
 export const navItems = [
   { label: "首頁", href: "/" },
   { label: "閱讀室", href: "/journal" },
-  { label: "塔羅抽牌", href: "/tarot-daily" },
+  { label: "SRT 療癒", href: "/srt-healing" },
   { label: "免費工具", href: "/tools" },
   { label: "服務", href: "/services" },
   { label: "免費資源庫", href: "/shop" },
@@ -331,6 +331,30 @@ export const tools: FreeTool[] = [
 
 export const services = [
   {
+    id: "srt-healing",
+    eyebrow: "核心療癒工具",
+    title: "SRT 靈性回應療法",
+    summary:
+      "給反覆在關係、金錢、工作方向、自我價值或情緒模式裡繞圈，想換一個角度整理自己的人。",
+    outcome:
+      "聚焦一個核心主題，完成遠距 SRT 整理、個人報告與三天 LINE 後續回覆。",
+    price:
+      "首次單堂 NT$3,000；一般單堂 NT$5,000；三堂 NT$8,500。活動資格與實付金額於付款前確認。",
+    duration: "單次遠距整理約 60 分鐘；多堂方案依確認後的時程安排。",
+    format:
+      "遠距進行，不需到場或視訊。預約前會先確認主題、資料用途與服務方式。",
+    delivery:
+      "一個核心主題的 SRT 整理、約 2,000 字個人報告與可帶回日常的行動建議。",
+    followUp: "完成後提供三天 LINE 回覆；範圍以預約前的書面說明為準。",
+    suitableFor:
+      "想探索反覆出現的關係、金錢與工作方向、自我價值或情緒模式，且願意保留自己判斷的人。",
+    notSuitableFor:
+      "需要醫療或心理診斷、處於急性危機，或期待保證健康、收入、關係與人生結果的人。",
+    href: "/srt-healing",
+    cta: "了解 SRT 與預約",
+    featured: true,
+  },
+  {
     id: "private-coaching",
     eyebrow: "深度陪跑",
     title: "療癒師自媒體 1 對 1 私教",
@@ -340,8 +364,7 @@ export const services = [
     price: "依合作範圍提供書面報價，付款前可完整確認。",
     duration: "12 週；會談頻率與文字回覆時段於適配後書面確認。",
     format: "線上進行，一對一會談搭配約定範圍內的文字回饋。",
-    delivery:
-      "定位句、內容主題地圖、核心服務說明與內容到諮詢的承接路徑。",
+    delivery: "定位句、內容主題地圖、核心服務說明與內容到諮詢的承接路徑。",
     followUp: "12 週內依書面方案提供支持；不包含未約定的即時或無期限回覆。",
     suitableFor:
       "已有助人專業或深度生命經驗，正在創作、接案或準備整理核心服務的人。",
@@ -461,4 +484,6 @@ export const socialLinks = {
   line: "https://lin.ee/eX7HkiC",
   lineOfficialAccountId: "@772broux",
   application: "https://forms.gle/i5fUrxmJ4rw55cfKA",
+  srtApplication: "https://forms.gle/AviVXKW5PR5E9ywc7",
+  srtNotion: "https://www.notion.so/SRT-1cee2eb9ffd5802bbe38e00630976d54",
 };

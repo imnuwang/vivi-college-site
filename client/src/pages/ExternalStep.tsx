@@ -6,7 +6,12 @@ import { leadCapture, socialLinks } from "@/data/catalog";
 import { buildLineMessageUrl } from "@/lib/lineOrder";
 import { trackConversion } from "@/lib/analytics";
 
-type DestinationId = "line" | "application" | "portaly";
+type DestinationId =
+  | "line"
+  | "application"
+  | "portaly"
+  | "srt-application"
+  | "srt-notion";
 
 const destinations = {
   line: {
@@ -36,6 +41,24 @@ const destinations = {
     backHref: "/tools",
     eventName: "portaly_open" as const,
   },
+  "srt-application": {
+    name: "Google SRT 個人預約表單",
+    title: "準備填寫 SRT 個人預約表單",
+    description:
+      "表單會詢問姓名、Email、生日、所在城市、LINE ID、想整理的主題、可接受時段與付款狀態。請先確認方案、金額、取消退款條件，再決定是否填寫與付款。",
+    action: "開啟 SRT 預約表單",
+    backHref: "/srt-healing",
+    eventName: "srt_application_open" as const,
+  },
+  "srt-notion": {
+    name: "Vivi 的 SRT 完整說明",
+    title: "準備閱讀 SRT Notion 完整說明",
+    description:
+      "Notion 頁收錄 Vivi 對 SRT 的靈性觀點、方案與過往整理。內容用於自我探索，不代表醫療、心理治療或保證結果。",
+    action: "開啟 Notion 完整說明",
+    backHref: "/srt-healing",
+    eventName: "srt_notion_open" as const,
+  },
 } satisfies Record<
   DestinationId,
   {
@@ -44,7 +67,12 @@ const destinations = {
     description: string;
     action: string;
     backHref: string;
-    eventName: "line_click" | "application_open" | "portaly_open";
+    eventName:
+      | "line_click"
+      | "application_open"
+      | "portaly_open"
+      | "srt_application_open"
+      | "srt_notion_open";
   }
 >;
 
@@ -67,6 +95,18 @@ const completionDetails = {
     nextHref: "/shop",
     nextLabel: "打開免費資源庫",
   },
+  "srt-application": {
+    message:
+      "如果你已送出 SRT 預約表，請留意 LINE 或 Email 回覆。填表與付款前，仍請確認方案、金額與取消退款條件。",
+    nextHref: "/srt-healing",
+    nextLabel: "回到 SRT 服務說明",
+  },
+  "srt-notion": {
+    message:
+      "你已回到美心學苑。Notion 內容是 Vivi 的 SRT 靈性觀點與完整資料，請保留自己的判斷。",
+    nextHref: "/srt-healing",
+    nextLabel: "回到 SRT 服務說明",
+  },
 } satisfies Record<
   DestinationId,
   { message: string; nextHref: string; nextLabel: string }
@@ -75,6 +115,8 @@ const completionDetails = {
 function getDestinationUrl(destinationId: DestinationId) {
   if (destinationId === "application") return socialLinks.application;
   if (destinationId === "portaly") return leadCapture.url;
+  if (destinationId === "srt-application") return socialLinks.srtApplication;
+  if (destinationId === "srt-notion") return socialLinks.srtNotion;
 
   const message = new URLSearchParams(window.location.search).get("message");
   return message ? buildLineMessageUrl(message) : socialLinks.line;

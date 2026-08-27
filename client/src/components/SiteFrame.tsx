@@ -96,6 +96,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
     location === "/creator-diagnostic" ||
     location === "/tarot-daily" ||
     location === "/energy-cards" ||
+    location === "/srt-healing" ||
     location === "/about" ||
     location.startsWith("/resources/");
 
@@ -247,6 +248,9 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
                 }
               >
                 加入 Vivi Line@
+              </Link>
+              <Link className="footer-link" href="/srt-healing">
+                了解 SRT 核心療癒
               </Link>
               <Link
                 className="footer-link"

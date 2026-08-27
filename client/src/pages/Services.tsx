@@ -8,6 +8,7 @@ import {
   CircleHelp,
   HeartHandshake,
   MessageCircleHeart,
+  ShieldCheck,
 } from "lucide-react";
 import { Link } from "wouter";
 import { CtaBand } from "@/components/PagePrimitives";
@@ -17,13 +18,21 @@ import { MoonMark, SectionEyebrow } from "@/components/SiteFrame";
 import { asset, services } from "@/data/catalog";
 import { trackConversion } from "@/lib/analytics";
 
+const privateCoaching = services.find(
+  service => service.id === "private-coaching"
+)!;
+const srtService = services.find(service => service.id === "srt-healing")!;
+const otherServices = services.filter(service =>
+  ["tarot-session", "energy-reset"].includes(service.id)
+);
+
 const specs = [
   ["陪跑期間", "12 週，從定位、內容到服務承接分階段推進。"],
   ["支持方式", "線上一對一會談搭配文字回饋；實際頻率於適配諮詢說明。"],
   ["主要成果", "定位句、內容主題地圖、核心服務說明、內容到諮詢的承接路徑。"],
   ["適合對象", "已有助人專業或深度生命經驗，正在創作或接案的女性創作者。"],
-  ["費用說明", services[0].price],
-  ["回覆安排", services[0].followUp],
+  ["費用說明", privateCoaching.price],
+  ["回覆安排", privateCoaching.followUp],
 ] as const;
 
 const process = [
@@ -60,8 +69,8 @@ export default function Services() {
   return (
     <>
       <Seo
-        title="一對一服務：塔羅、能量整理與療癒品牌私教"
-        description="美心學苑提供一對一塔羅占卜、能量整理與療癒師自媒體品牌私教，讓感受、專業與下一步都有清楚的承接。"
+        title="一對一服務：SRT 療癒、塔羅與療癒品牌私教"
+        description="美心學苑以 SRT 靈性回應療法為核心，另有一對一塔羅、能量整理與療癒師自媒體品牌私教。"
         path="/services"
         image={asset.viviPortrait}
         schema={{
@@ -98,34 +107,37 @@ export default function Services() {
           <div className="inner-page-hero-copy">
             <SectionEyebrow>ONE-TO-ONE SUPPORT · CLEARLY HELD</SectionEyebrow>
             <h1>
-              先看清你卡住的地方，
+              先看懂你想整理的主題，
               <br />
-              <em>再決定怎麼往前。</em>
+              <em>再選適合的服務。</em>
             </h1>
             <p>
-              從一對一塔羅、能量整理到療癒品牌私教，每一段服務都先整理你現在真正遇到的問題，再一起確認可行的下一步。
+              美心學苑以 SRT
+              靈性回應療法為核心，也保留塔羅、能量整理與療癒品牌私教。先了解方法、條件與界線，再決定是否預約。
             </p>
             <div className="inner-page-hero-actions">
               <Link
-                href="/continue/application"
+                href="/srt-healing"
                 className="vivi-button vivi-button-light"
                 onClick={() =>
                   trackConversion("service_cta_click", {
-                    service_id: "private-coaching",
+                    service_id: "srt-healing",
                     source: "services_hero",
                   })
                 }
               >
-                申請適配諮詢 <ArrowRight className="size-4" />
+                了解核心 SRT 療癒 <ArrowRight className="size-4" />
               </Link>
               <Link
-                href="/continue/line"
+                href="/continue/srt-application"
                 className="vivi-button inner-page-ghost-button"
                 onClick={() =>
-                  trackConversion("line_click", { source: "services_hero" })
+                  trackConversion("srt_application_open", {
+                    source: "services_hero",
+                  })
                 }
               >
-                先用 LINE@ 說說現況 <MessageCircleHeart className="size-4" />
+                查看 SRT 預約表單 <MessageCircleHeart className="size-4" />
               </Link>
             </div>
             <div className="inner-page-hero-note">
@@ -159,6 +171,52 @@ export default function Services() {
           ))}
         </div>
       </nav>
+
+      <section
+        id="srt-healing"
+        className="section-space srt-service-core scroll-mt-20"
+      >
+        <div className="site-shell srt-service-core-grid">
+          <div>
+            <SectionEyebrow>CORE HEALING METHOD</SectionEyebrow>
+            <h2 className="display-heading mt-4">SRT 靈性回應療法</h2>
+            <p>{srtService.summary}</p>
+            <div className="srt-service-core-actions">
+              <Link
+                href="/srt-healing"
+                className="vivi-button vivi-button-dark"
+              >
+                看完整流程與費用 <ArrowRight className="size-4" />
+              </Link>
+              <Link href="/continue/srt-application" className="vivi-text-link">
+                前往預約表單
+              </Link>
+            </div>
+          </div>
+          <div className="srt-service-core-details">
+            <div>
+              <b>怎麼進行</b>
+              <p>
+                {srtService.duration} {srtService.format}
+              </p>
+            </div>
+            <div>
+              <b>你會收到</b>
+              <p>{srtService.delivery}</p>
+            </div>
+            <div>
+              <b>費用</b>
+              <p>{srtService.price}</p>
+            </div>
+            <div className="srt-service-core-boundary">
+              <ShieldCheck aria-hidden="true" />
+              <p>
+                SRT 用於靈性自我探索，不提供醫療或心理診斷，也不保證特定結果。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section id="private-coaching" className="section-space scroll-mt-20">
         <div className="site-shell coaching-feature coaching-feature-garden">
@@ -324,7 +382,7 @@ export default function Services() {
             <PortalyLeadLink className="vivi-text-link" />
           </div>
           <div className="other-support-list">
-            {services.slice(1).map((service, index) => (
+            {otherServices.map((service, index) => (
               <article id={service.id} key={service.id}>
                 <span>0{index + 2}</span>
                 <div>
@@ -377,10 +435,10 @@ export default function Services() {
       </section>
 
       <CtaBand
-        title="你不需要現在就做決定，可以先讓 Vivi 了解你的現況。"
-        description="填寫適配諮詢表，說明目前的定位、內容與卡點，再一起確認適合的下一步。"
-        href="/continue/application"
-        label="填寫適配諮詢表"
+        title="還不確定哪一項適合，可以先把問題問清楚。"
+        description="先透過 LINE 說明你想整理的主題，再確認 SRT、塔羅、能量整理或品牌私教是否適合。"
+        href="/continue/line"
+        label="先用 LINE 詢問"
       />
     </>
   );

@@ -17,6 +17,7 @@ import EnergyCards from "./pages/EnergyCards";
 import ResourceLibrary from "./pages/ResourceLibrary";
 import Policies from "./pages/Policies";
 import ExternalStep from "./pages/ExternalStep";
+import SrtHealing from "./pages/SrtHealing";
 import { SiteFrame } from "./components/SiteFrame";
 import { Analytics } from "./components/Analytics";
 
@@ -32,6 +33,7 @@ function Router() {
         <Route path={"/tarot-daily"} component={TarotDaily} />
         <Route path={"/creator-diagnostic"} component={CreatorDiagnostic} />
         <Route path={"/energy-cards"} component={EnergyCards} />
+        <Route path={"/srt-healing"} component={SrtHealing} />
         <Route path={"/services"} component={Services} />
         <Route path={"/shop"} component={Shop} />
         <Route path={"/resources/:resourceId"} component={ResourceLibrary} />

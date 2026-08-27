@@ -25,6 +25,7 @@ describe("commercial launch P0 safeguards", () => {
     const requiredRoutes = [
       "/journal/from-top-sales-to-healing",
       "/energy-cards",
+      "/srt-healing",
       "/resources/clarity-notebook",
       "/resources/style-signal-cards",
       "/resources/energy-reset-kit",

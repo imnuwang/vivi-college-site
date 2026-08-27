@@ -34,21 +34,21 @@ describe("免費內容資源庫流程", () => {
     expect(shop).not.toContain("下載連結");
   });
 
-  it("restores the tarot draw link between journal and free tools in shared navigation", () => {
+  it("puts the core SRT service in shared navigation while tarot remains available in tools", () => {
     const frame = source("client/src/components/SiteFrame.tsx");
 
     expect(navItems.map(item => item.label)).toEqual([
       "首頁",
       "閱讀室",
-      "塔羅抽牌",
+      "SRT 療癒",
       "免費工具",
       "服務",
       "免費資源庫",
       "關於 Vivi",
     ]);
-    expect(navItems.find(item => item.label === "塔羅抽牌")).toEqual({
-      label: "塔羅抽牌",
-      href: "/tarot-daily",
+    expect(navItems.find(item => item.label === "SRT 療癒")).toEqual({
+      label: "SRT 療癒",
+      href: "/srt-healing",
     });
     expect(frame).toContain("navItems.map");
   });

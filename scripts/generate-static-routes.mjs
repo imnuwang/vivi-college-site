@@ -75,6 +75,11 @@ const routes = [
     "用 12 張情境急救卡、關鍵字推薦與 3 分鐘計時器，在需要開口、設界線或被看見前先穩住自己。",
   ],
   [
+    "/srt-healing",
+    "SRT 靈性回應療法：流程、費用與預約",
+    "了解 Vivi 的核心 SRT 靈性回應療法，包含適合主題、遠距流程、費用、個人報告、後續回覆與預約資料說明。",
+  ],
+  [
     "/services",
     "Vivi 深度服務",
     "了解 12 週療癒型創作者陪跑、一對一塔羅與能量整理的方向、流程及申請方式。",
@@ -130,6 +135,18 @@ const routes = [
     "/continue/portaly",
     "前往 Portaly 月光來信",
     "前往 Portaly 前，先了解 Email 用途與免費工具的其他使用方式。",
+    "noindex,follow",
+  ],
+  [
+    "/continue/srt-application",
+    "前往 SRT 個人預約表單",
+    "前往 Google SRT 預約表前，先了解資料用途、方案確認與付款注意事項。",
+    "noindex,follow",
+  ],
+  [
+    "/continue/srt-notion",
+    "閱讀 SRT Notion 完整說明",
+    "前往 Vivi 的 SRT Notion 頁前，先了解靈性內容與療效邊界。",
     "noindex,follow",
   ],
   [

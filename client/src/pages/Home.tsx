@@ -2,7 +2,13 @@
  * Style guide — 內在花園：以深林、晨光與暖紙頁建立沉浸感；
  * 首頁先讓讀者選擇「照顧自己」或「讓專業被看見」，再進入內容與服務。
  */
-import { ArrowRight, ClipboardCheck, HeartHandshake } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  ClipboardCheck,
+  HeartHandshake,
+  Sparkles,
+} from "lucide-react";
 import { Link } from "wouter";
 import { CtaBand } from "@/components/PagePrimitives";
 import { MoonMark, SectionEyebrow } from "@/components/SiteFrame";
@@ -52,8 +58,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="療癒、自我成長與療癒品牌內容"
-        description="美心學苑提供低潮陪伴、自我探索、免費練習與療癒品牌內容診斷，陪你先照顧自己，也把有能力的自己說清楚。"
+        title="SRT 療癒、自我成長與療癒品牌內容"
+        description="美心學苑以 SRT 靈性回應療法為核心，提供自我探索、免費練習、塔羅日籤與療癒品牌內容診斷。"
         path="/"
         image={asset.homeHeroDesktop}
         schema={{
@@ -96,14 +102,15 @@ export default function Home() {
               找回自己，<em>也把有能力的自己說清楚。</em>
             </h1>
             <p>
-              這裡有能在今天開始的閱讀、練習與工具。當你準備把療癒專業說得更清楚，也有內容診斷與陪跑服務。
+              這裡以 SRT
+              靈性回應療法為核心，也保留能在今天開始的閱讀、塔羅日籤、練習與療癒品牌內容診斷。
             </p>
             <div className="hero-paths" aria-label="選擇你現在最需要的方向">
-              <Link href="/energy-cards" className="hero-path hero-path-self">
+              <Link href="/srt-healing" className="hero-path hero-path-self">
                 <HeartHandshake aria-hidden="true" />
                 <span>
-                  <b>我想先照顧自己</b>
-                  <small>從此刻的情緒與需要出發</small>
+                  <b>我想了解 SRT 療癒</b>
+                  <small>先看方法、流程與適合情況</small>
                 </span>
                 <ArrowRight aria-hidden="true" />
               </Link>
@@ -172,6 +179,52 @@ export default function Home() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="section-space home-srt-section">
+        <div className="site-shell home-srt-feature">
+          <div className="home-srt-copy">
+            <SectionEyebrow>VIVI'S CORE HEALING METHOD</SectionEyebrow>
+            <h2>
+              美心學苑的核心療癒工具，
+              <br />是 SRT 靈性回應療法。
+            </h2>
+            <p>
+              當關係、金錢、工作方向或自我價值反覆卡在相似的位置，SRT
+              提供一種靈性自我探索方式。你會先聚焦一個主題，再收到個人報告與日常建議。
+            </p>
+            <ul>
+              <li>
+                <Check aria-hidden="true" /> 遠距進行，不需到場或視訊
+              </li>
+              <li>
+                <Check aria-hidden="true" /> 單次約 60 分鐘，附個人報告
+              </li>
+              <li>
+                <Check aria-hidden="true" /> 清楚揭露費用、資料與療效邊界
+              </li>
+            </ul>
+            <div className="home-srt-actions">
+              <Link
+                href="/srt-healing"
+                className="vivi-button vivi-button-light"
+              >
+                了解 SRT 療癒 <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                href="/continue/srt-application"
+                className="home-srt-form-link"
+              >
+                查看預約表單
+              </Link>
+            </div>
+          </div>
+          <div className="home-srt-mark" aria-hidden="true">
+            <MoonMark size="lg" />
+            <Sparkles />
+            <span>SRT</span>
+          </div>
         </div>
       </section>
 
@@ -250,10 +303,11 @@ export default function Home() {
             </h2>
           </div>
           <p>
-            從一對一塔羅與能量整理，到給療癒師的品牌私教，每一項服務都先協助你確認：現在真正需要被處理的是什麼。
+            從核心 SRT
+            療癒、塔羅與能量整理，到給療癒師的品牌私教，每一項服務都先協助你確認現在真正想整理的是什麼。
           </p>
         </div>
-        <div className="site-shell mt-10 grid gap-4 lg:grid-cols-3">
+        <div className="site-shell mt-10 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {services.map(service => (
             <Link
               href={service.href}
