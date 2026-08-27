@@ -63,7 +63,11 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
     location === "/" ||
     location === "/services" ||
     location === "/journal" ||
-    location.startsWith("/journal/");
+    location.startsWith("/journal/") ||
+    location === "/tools" ||
+    location === "/shop" ||
+    location === "/creator-diagnostic" ||
+    location.startsWith("/resources/");
 
   return (
     <div className="min-h-screen overflow-x-clip bg-[#fbf8f0] text-[#183b31]">

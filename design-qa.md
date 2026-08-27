@@ -81,4 +81,43 @@
 - Fresh Browser tab: no warning or error console entries.
 - Desktop and 390 px mobile views: no broken images or horizontal overflow.
 
+## Round 3: free tools, resource library, diagnostic, and practices
+
+### Visual truth and evidence
+
+- Source visual truth: `C:\Users\user\.codex\generated_images\01a03dbb-b8aa-7660-9f7b-95c918f185ea\exec-a6ab8533-785b-4b37-ad11-43c6176123fe.png`.
+- Source pixels: 1487 x 1058.
+- Tools implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-tools-resources-round-2026-08-27\after-tools-desktop.png`.
+- Library implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-tools-resources-round-2026-08-27\after-shop-desktop.png`.
+- Diagnostic implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-tools-resources-round-2026-08-27\after-creator-diagnostic-desktop.png`.
+- Interactive practice implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-tools-resources-round-2026-08-27\after-practice-clarity-desktop.png`.
+- Desktop CSS viewport: 1536 x 1024. Mobile CSS viewport: 390 x 844.
+- Same-input comparison: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-tools-resources-round-2026-08-27\comparison-reference-tools-shop-diagnostic.png`.
+- State: initial tools, library, diagnostic, and clarity-practice views, with all main interactions separately exercised.
+
+### Fidelity review
+
+- The full-bleed forest hero, split editorial composition, muted gold headline, warm photography, and dark-green captions continue the selected inner-garden direction.
+- Each route uses a different real project image and a different next-section structure while retaining the same navigation, typography, color, and spacing system.
+- The downloadable tools retain an asymmetric editorial rhythm. The resource catalogue uses larger two-column entries so the result and action remain readable instead of compressing five narrow cards across the screen.
+- The diagnostic workspace separates guidance from the four questions with a quiet vertical rule. The interactive practice keeps its working inputs while gaining an immersive, resource-specific opening.
+- Desktop and mobile headline wrapping was explicitly balanced to avoid orphaned final characters.
+- P0/P1: none remaining.
+- P2 fixed: generic pale `PageIntro` headers previously made four product journeys feel like repeated presentation slides. They now have route-specific immersive heroes and clear first actions.
+- P2 fixed: the resource catalogue was a five-column grid with dense, narrow cards. It now uses two-column editorial entries on desktop and a single clear reading column on mobile.
+- P2 fixed: the practice pages did not visually connect to the resource library or the accepted brand direction. They now include resource imagery, a back path, a clear start action, and a short use boundary.
+- P3 accepted: existing project photography is reused rather than manufacturing decorative assets or changing Vivi's supplied brand imagery.
+
+### Functional checks
+
+- Tools hero opens `/creator-diagnostic` through the primary CTA.
+- Library category `晚間回穩` reduces the catalogue from five resources to one correct result.
+- The evening practice opens at `/resources/energy-reset-kit`, accepts a checklist selection and note, and confirms copied output.
+- The diagnostic accepts all four answers, renders the result, copies the result text, and returns to four unanswered questions after restart.
+- All route-specific images load. Desktop and 390 px mobile layouts have no visible clipping or horizontal overflow.
+- Browser console has no warning or error entries after the exercised flows.
+- TypeScript check passed.
+- Production build passed.
+- Vitest: 9 files passed, 33 tests passed.
+
 final result: passed
