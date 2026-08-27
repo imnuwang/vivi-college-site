@@ -36,4 +36,49 @@
 - Production build passed.
 - Vitest: 9 files passed, 33 tests passed.
 
+## Round 2: services and editorial content
+
+### Visual truth and evidence
+
+- Source visual truth: `C:\Users\user\.codex\generated_images\01a03dbb-b8aa-7660-9f7b-95c918f185ea\exec-a6ab8533-785b-4b37-ad11-43c6176123fe.png`.
+- Source pixels: 1487 x 1058.
+- Services implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-services-content-round-2026-08-27\services-after-desktop.png`.
+- Journal implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-services-content-round-2026-08-27\journal-after-desktop.png`.
+- Article implementation: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-services-content-round-2026-08-27\article-after-desktop.png`.
+- Desktop CSS viewport: 1536 x 1024. Browser captures are 1521 x 1014 after scrollbar and browser-surface exclusion.
+- Mobile CSS viewport: 390 x 844. Captures are 375 x 812 after browser-surface exclusion.
+- Density normalization: each desktop artifact was scaled inside a 1536 x 1024 frame without cropping.
+- Full-view comparison: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-services-content-round-2026-08-27\design-comparison.png`.
+- Focused evidence: the three individual implementation screenshots were inspected at original size for headline wrapping, image masks, button labels, header contrast, and next-section visibility.
+- State: initial services page, initial journal page, and initial article page for `/journal/love-tarot-question`.
+
+### Fidelity review
+
+- Typography: the same Noto Serif TC editorial display treatment, white and muted-gold hierarchy, compact eyebrow labels, and restrained body scale continue across all three routes.
+- Spacing: each desktop hero ends between 680 and 744 CSS px, so the next useful section appears in the first viewport. Mobile heroes stack without clipping or horizontal overflow.
+- Color: forest green, warm ivory, muted gold, and low-saturation photography match the selected inner-garden direction.
+- Images: the services page keeps Vivi's supplied portrait. The journal and article pages use existing project photography with consistent crop, darkening, and real image frames.
+- Copy: existing service facts, limits, article titles, dates, and reading times were preserved. Hero wording was reorganized to improve clarity without adding results or guarantees.
+- Header and controls: transparent navigation, focus styling, category chips, service anchors, CTA buttons, and mobile menu remain consistent with the approved homepage.
+
+### Comparison history and fixes
+
+- P2 fixed: the journal headline left `口。` alone on a fourth desktop line. The display size was reduced so the phrase holds a balanced three-line rhythm.
+- P2 fixed: the journal category URL changed but the selected state and article list did not update. The page now subscribes to Wouter's search string, and `品牌私教` correctly shows one matching article.
+- P2 fixed: service and journal pages originally used the generic pale `PageIntro` layout and read like presentation slides. Both now use the accepted full-bleed inner-garden hero, restrained next-section preview, and route-specific imagery.
+- P2 fixed: the article page originally opened on a flat cream split layout. It now uses the same immersive header, then returns to a quiet paper reading surface.
+- P1/P0: none remaining.
+- P3 accepted: the service portrait stays as a separately framed real photograph instead of compositing or regenerating Vivi's face.
+- P3 accepted: article hero backgrounds change with each article image while keeping the same overlay, typography, and spacing system.
+
+### Functional checks
+
+- Services route: page identity, no blank state, no framework overlay, no broken images, no horizontal overflow.
+- Service anchor: `一對一塔羅占卜諮詢` opens `/services#tarot-session` and aligns the target at the top of the viewport.
+- Service FAQ: the first question opens and exposes its answer.
+- Journal filter: `品牌私教` updates the active chip, URL, article count, and lead article.
+- Article path: the journal lead story opens `/journal/love-tarot-question` at scroll position 0.
+- Fresh Browser tab: no warning or error console entries.
+- Desktop and 390 px mobile views: no broken images or horizontal overflow.
+
 final result: passed

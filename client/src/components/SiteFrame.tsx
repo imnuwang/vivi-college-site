@@ -59,14 +59,18 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
     return () => window.cancelAnimationFrame(frame);
   }, [location]);
 
-  const isHome = location === "/";
+  const isImmersiveRoute =
+    location === "/" ||
+    location === "/services" ||
+    location === "/journal" ||
+    location.startsWith("/journal/");
 
   return (
     <div className="min-h-screen overflow-x-clip bg-[#fbf8f0] text-[#183b31]">
       <header
         className={cn(
           "site-header",
-          isHome && "site-header-on-hero",
+          isImmersiveRoute && "site-header-on-hero",
           scrolled && "site-header-scrolled",
           menuOpen && "site-header-menu-open"
         )}
