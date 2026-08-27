@@ -186,4 +186,35 @@
 - Production build passed.
 - Vitest: 9 files passed, 33 tests passed.
 
+## Round 6: source-grounded founder story and editorial depth
+
+### Content truth and evidence
+
+- Primary transcript: `C:\Users\user\Desktop\content-ai-toolkit-main\語料庫\錄音逐字稿\2026-07-21_為什麼開始接觸療癒.md`.
+- Curated first-person story source: `C:\Users\user\Desktop\content-ai-toolkit-main\人設檔\我的故事庫.md`.
+- The published narrative uses only source-backed milestones: long-term microbusiness work, team leadership, top sales performance, the first NT$600 online-store income, panic attacks, avoiding crowds and groups, a period without income, self-healing, and learning content so healing work can be understood.
+- Claims about unnamed third parties, guaranteed outcomes, repeatable conversion rates, and invented client stories were not added.
+
+### Visual truth and evidence
+
+- Selected design reference: `C:\Users\user\AppData\Local\Temp\codex-clipboard-2df11b1b-b5d8-461d-ae2f-892b9969f5b3.png`.
+- About story desktop: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-real-story-round-2026-08-27\about-story-desktop.png`.
+- New article desktop: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-real-story-round-2026-08-27\story-article-desktop.png`.
+- About story mobile: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-real-story-round-2026-08-27\about-story-mobile.png`.
+- New article mobile: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-real-story-round-2026-08-27\story-article-mobile.png`.
+- Same-input comparison: `C:\Users\user\Documents\Codex\2026-08-26\sites-plugin-sites-openai-bundled\outputs\vivi-real-story-round-2026-08-27\comparison-reference-about-article.png`.
+
+### Fixes and checks
+
+- P1 fixed: the About page previously relied on a generic founder narrative that did not show the specific experience behind Vivi's work. It now uses the first-person story record and links to the full editorial article.
+- P1 fixed: the reading room had only four short topic articles and no substantial first-person founder story. The new seven-paragraph article adds a clear trust path from lived experience to current work.
+- P2 fixed: the About copy no longer uses the banned word `明明` or the unsupported claim that Vivi doubted whether earning money was pure enough.
+- P2 fixed: the personal story is now the featured reading and appears in the homepage's recent-reading set without adding a new route pattern.
+- Desktop and 390 px mobile views have no horizontal overflow. Visible hero, story, article, and responsive images load without errors.
+- The About story anchor and full-story link both work. The reading room resolves the new article at `/journal/from-top-sales-to-healing`.
+- Browser console has no warning or error entries after the checked flows.
+- TypeScript check passed.
+- Production build passed.
+- Vitest: 10 files passed, 34 tests passed.
+
 final result: passed
