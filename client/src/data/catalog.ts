@@ -4,7 +4,11 @@
  */
 
 export type ContentPillar = "塔羅占卜" | "能量療癒" | "穿搭玄學" | "品牌私教";
-export type NewsletterSegment = "site_newsletter" | "signal-notes" | "brand-clarity" | "style-intention";
+export type NewsletterSegment =
+  | "site_newsletter"
+  | "signal-notes"
+  | "brand-clarity"
+  | "style-intention";
 
 export type FreeTool = {
   id: string;
@@ -56,37 +60,35 @@ export const leadCapture = {
   description: "留下 Email，收到月光來信與後續免費工具更新；可隨時取消訂閱。",
 } as const;
 
-/**
- * Netlify-compatible static asset base. Images and free PDFs are versioned with the
- * public GitHub source so they no longer depend on the Manus deployment proxy.
- */
-const netlifyAssetBase = "https://raw.githubusercontent.com/imnuwang/vivi-college-site/master/netlify-assets";
+/** Netlify and Sites both publish the versioned files under client/public. */
+const publicAssetBase = "/assets";
 
 export const asset = {
-  hero: `${netlifyAssetBase}/images/vivi-moonlit-library-hero.jpg`,
-  tarot: `${netlifyAssetBase}/images/vivi-tarot-journal.jpg`,
-  energy: `${netlifyAssetBase}/images/vivi-energy-ritual.jpg`,
-  style: `${netlifyAssetBase}/images/vivi-style-luck.jpg`,
-  seal: `${netlifyAssetBase}/images/vivi-meixin-academy-moon-star-emblem.png`,
-  viviPortrait: `${netlifyAssetBase}/images/JZ6_7995.jpg`,
-  originalLogo: `${netlifyAssetBase}/images/vivi-original-logo.png`,
-  caseGrowth: `${netlifyAssetBase}/images/case-growth.png`,
-  caseBeforeAfter: `${netlifyAssetBase}/images/case-before-after.png`,
-  caseContent: `${netlifyAssetBase}/images/case-content.png`,
-  caseProblem: `${netlifyAssetBase}/images/case-problem.png`,
-  caseAction: `${netlifyAssetBase}/images/case-action.png`,
-  energyFirstAid01: `${netlifyAssetBase}/images/energy-cards/energy-card-01.webp`,
-  energyFirstAid02: `${netlifyAssetBase}/images/energy-cards/energy-card-02.webp`,
-  energyFirstAid03: `${netlifyAssetBase}/images/energy-cards/energy-card-03.webp`,
-  energyFirstAid04: `${netlifyAssetBase}/images/energy-cards/energy-card-04.webp`,
-  energyFirstAid05: `${netlifyAssetBase}/images/energy-cards/energy-card-05.webp`,
-  energyFirstAid06: `${netlifyAssetBase}/images/energy-cards/energy-card-06.webp`,
-  energyFirstAid07: `${netlifyAssetBase}/images/energy-cards/energy-card-07.webp`,
-  energyFirstAid08: `${netlifyAssetBase}/images/energy-cards/energy-card-08.webp`,
-  energyFirstAid09: `${netlifyAssetBase}/images/energy-cards/energy-card-09.webp`,
-  energyFirstAid10: `${netlifyAssetBase}/images/energy-cards/energy-card-10.webp`,
-  energyFirstAid11: `${netlifyAssetBase}/images/energy-cards/energy-card-11.webp`,
-  energyFirstAid12: `${netlifyAssetBase}/images/energy-cards/energy-card-12.webp`,
+  hero: `${publicAssetBase}/images/vivi-moonlit-library-hero.jpg`,
+  innerGardenHero: `${publicAssetBase}/images/vivi-inner-garden-hero.webp`,
+  tarot: `${publicAssetBase}/images/vivi-tarot-journal.jpg`,
+  energy: `${publicAssetBase}/images/vivi-energy-ritual.jpg`,
+  style: `${publicAssetBase}/images/vivi-style-luck.jpg`,
+  seal: `${publicAssetBase}/images/vivi-meixin-academy-moon-star-emblem.png`,
+  viviPortrait: `${publicAssetBase}/images/JZ6_7995.jpg`,
+  originalLogo: `${publicAssetBase}/images/vivi-original-logo.png`,
+  caseGrowth: `${publicAssetBase}/images/case-growth.png`,
+  caseBeforeAfter: `${publicAssetBase}/images/case-before-after.png`,
+  caseContent: `${publicAssetBase}/images/case-content.png`,
+  caseProblem: `${publicAssetBase}/images/case-problem.png`,
+  caseAction: `${publicAssetBase}/images/case-action.png`,
+  energyFirstAid01: `${publicAssetBase}/images/energy-cards/energy-card-01.webp`,
+  energyFirstAid02: `${publicAssetBase}/images/energy-cards/energy-card-02.webp`,
+  energyFirstAid03: `${publicAssetBase}/images/energy-cards/energy-card-03.webp`,
+  energyFirstAid04: `${publicAssetBase}/images/energy-cards/energy-card-04.webp`,
+  energyFirstAid05: `${publicAssetBase}/images/energy-cards/energy-card-05.webp`,
+  energyFirstAid06: `${publicAssetBase}/images/energy-cards/energy-card-06.webp`,
+  energyFirstAid07: `${publicAssetBase}/images/energy-cards/energy-card-07.webp`,
+  energyFirstAid08: `${publicAssetBase}/images/energy-cards/energy-card-08.webp`,
+  energyFirstAid09: `${publicAssetBase}/images/energy-cards/energy-card-09.webp`,
+  energyFirstAid10: `${publicAssetBase}/images/energy-cards/energy-card-10.webp`,
+  energyFirstAid11: `${publicAssetBase}/images/energy-cards/energy-card-11.webp`,
+  energyFirstAid12: `${publicAssetBase}/images/energy-cards/energy-card-12.webp`,
 } as const;
 
 export const navItems = [
@@ -151,7 +153,8 @@ export const articles: Article[] = [
     slug: "money-energy-reset",
     pillar: "能量療癒",
     title: "覺得財運卡住時，先檢查你是不是一直在耗能",
-    excerpt: "不是每一次不順都是運氣問題；有時候，你只是長期把力氣花在不屬於自己的地方。",
+    excerpt:
+      "不是每一次不順都是運氣問題；有時候，你只是長期把力氣花在不屬於自己的地方。",
     readingTime: "5 分鐘閱讀",
     date: "2026.08.18",
     image: asset.energy,
@@ -191,7 +194,8 @@ export const articles: Article[] = [
     slug: "healer-brand-language",
     pillar: "品牌私教",
     title: "療癒師的內容不轉單，常常不是因為你不夠會寫",
-    excerpt: "當專業、受眾與服務之間缺少翻譯，越努力發文，越容易把自己寫得更模糊。",
+    excerpt:
+      "當專業、受眾與服務之間缺少翻譯，越努力發文，越容易把自己寫得更模糊。",
     readingTime: "7 分鐘閱讀",
     date: "2026.08.11",
     image: asset.hero,
@@ -217,7 +221,7 @@ export const tools: FreeTool[] = [
     description: "把最近重複出現的人、事、夢與情緒，整理成能回看的覺察筆記。",
     format: "PDF 練習表",
     pages: "3 頁可書寫練習",
-    downloadUrl: `${netlifyAssetBase}/downloads/repeating-signals-workbook.pdf`,
+    downloadUrl: `${publicAssetBase}/downloads/repeating-signals-workbook.pdf`,
     outcome: "辨認一個反覆迴圈，完成一句提醒與一個 10 分鐘行動。",
     segment: "signal-notes",
     pill: "免費下載",
@@ -228,10 +232,11 @@ export const tools: FreeTool[] = [
     id: "brand-clarity",
     number: "02",
     title: "療癒型創作者的定位急救表",
-    description: "把助人經驗、受眾場景與服務承諾整理成一句定位，再產出三個內容入口。",
+    description:
+      "把助人經驗、受眾場景與服務承諾整理成一句定位，再產出三個內容入口。",
     format: "PDF 定位工作表",
     pages: "5 頁策略練習",
-    downloadUrl: `${netlifyAssetBase}/downloads/healer-positioning-workbook.pdf`,
+    downloadUrl: `${publicAssetBase}/downloads/healer-positioning-workbook.pdf`,
     outcome: "完成一句定位與 72 小時內可發布的第一篇內容題目。",
     segment: "brand-clarity",
     pill: "免費下載",
@@ -245,7 +250,7 @@ export const tools: FreeTool[] = [
     description: "從場景、色彩、輪廓與衣櫥單品，做出能支持今天狀態的穿搭選擇。",
     format: "PDF 意圖穿搭卡",
     pages: "5 頁造型練習",
-    downloadUrl: `${netlifyAssetBase}/downloads/intentional-style-card.pdf`,
+    downloadUrl: `${publicAssetBase}/downloads/intentional-style-card.pdf`,
     outcome: "完成一套當日造型與七天訊號實驗。",
     segment: "style-intention",
     pill: "免費下載",
@@ -260,7 +265,8 @@ export const services = [
     eyebrow: "深度陪跑",
     title: "療癒師自媒體 1 對 1 私教",
     summary: "給已經有助人專業、卻仍卡在定位、內容與承接的女性創作者。",
-    outcome: "12 週內，完成定位句、內容主題地圖、核心服務說明與從內容走到諮詢的路徑。",
+    outcome:
+      "12 週內，完成定位句、內容主題地圖、核心服務說明與從內容走到諮詢的路徑。",
     href: "/services#private-coaching",
     cta: "申請適配諮詢",
     featured: true,
@@ -280,7 +286,8 @@ export const services = [
     eyebrow: "回到自己",
     title: "能量整理與狀態回穩",
     summary: "給長期耗能、反覆內耗，想重新找回節奏與邊界的人。",
-    outcome: "透過對話與專屬練習，辨識讓你耗能的模式，建立可被日常接住的調整方式。",
+    outcome:
+      "透過對話與專屬練習，辨識讓你耗能的模式，建立可被日常接住的調整方式。",
     href: "/services#energy-reset",
     cta: "探索適合的支持",
     featured: false,
@@ -329,7 +336,8 @@ export const freeResources: FreeResource[] = [
     kind: "brand",
     name: "療癒品牌｜內容承接地圖",
     category: "療癒創作",
-    description: "給已開始接案的療癒型創作者，把內容、免費資源與諮詢入口串成一條路。",
+    description:
+      "給已開始接案的療癒型創作者，把內容、免費資源與諮詢入口串成一條路。",
     detail: "用三個欄位完成你的服務定位句與三個可發布的內容入口。",
     image: asset.hero,
     badge: "3 欄完成",
@@ -341,8 +349,10 @@ export const freeResources: FreeResource[] = [
     kind: "energy-cards",
     name: "把自己穿回來｜開口前3分鐘急救卡",
     category: "情境急救",
-    description: "當你要開口、面對人群、說出條件或設下界線時，用 3 分鐘讀懂狀態、回到身體，完成下一步。",
-    detail: "完整 12 張情境急救卡；含身體復位、衣物錨點、可複製出場句、場景卡組與可收藏處方。",
+    description:
+      "當你要開口、面對人群、說出條件或設下界線時，用 3 分鐘讀懂狀態、回到身體，完成下一步。",
+    detail:
+      "完整 12 張情境急救卡；含身體復位、衣物錨點、可複製出場句、場景卡組與可收藏處方。",
     image: asset.energyFirstAid01,
     badge: "完整免費體驗",
     href: "/energy-cards",
@@ -354,13 +364,15 @@ export const testimonials = [
   {
     metric: "1,644 → 96,572",
     title: "內容開始說對話，不再只靠運氣被看見",
-    description: "從重新整理受眾場景、內容主軸與鉤子邏輯開始，讓訊息更容易被真正需要的人理解。",
+    description:
+      "從重新整理受眾場景、內容主軸與鉤子邏輯開始，讓訊息更容易被真正需要的人理解。",
     image: asset.caseGrowth,
   },
   {
     metric: "定位前後",
     title: "同一個人，不同做法，內容結果完全不同",
-    description: "帳號不再只是分享，而是開始留下清楚的受眾印象與可累積的內容方向。",
+    description:
+      "帳號不再只是分享，而是開始留下清楚的受眾印象與可累積的內容方向。",
     image: asset.caseBeforeAfter,
   },
 ];

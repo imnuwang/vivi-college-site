@@ -15,12 +15,16 @@ describe("Portaly lead capture configuration", () => {
 
   it("keeps the three free tools directly downloadable from Netlify-compatible static assets while using Portaly as the main lead provider", () => {
     expect(tools).toHaveLength(3);
-    expect(tools.every((tool) => tool.downloadUrl.startsWith("https://raw.githubusercontent.com/imnuwang/vivi-college-site/master/netlify-assets/downloads/"))).toBe(true);
+    expect(
+      tools.every(tool => tool.downloadUrl.startsWith("/assets/downloads/"))
+    ).toBe(true);
     expect(leadCapture.provider).toBe("Portaly");
   });
 
   it("renders a secure external Portaly CTA", () => {
-    const markup = renderToStaticMarkup(createElement(PortalyLeadLink, { label: "測試 CTA" }));
+    const markup = renderToStaticMarkup(
+      createElement(PortalyLeadLink, { label: "測試 CTA" })
+    );
 
     expect(markup).toContain(`href="${leadCapture.url}"`);
     expect(markup).toContain('target="_blank"');
@@ -36,17 +40,26 @@ describe("Portaly lead capture configuration", () => {
     ];
 
     for (const relativePath of files) {
-      const source = readFileSync(resolve(import.meta.dirname, "..", relativePath), "utf8");
+      const source = readFileSync(
+        resolve(import.meta.dirname, "..", relativePath),
+        "utf8"
+      );
       expect(source).toContain("PortalyLeadLink");
     }
 
-    const home = readFileSync(resolve(import.meta.dirname, "..", "client/src/pages/Home.tsx"), "utf8");
+    const home = readFileSync(
+      resolve(import.meta.dirname, "..", "client/src/pages/Home.tsx"),
+      "utf8"
+    );
     expect(home).toContain('href="/creator-diagnostic"');
-    expect(home).toContain("先做內容承接診斷");
+    expect(home).toContain("我想讓專業被看見");
   });
 
   it("uses direct Portaly links for the header, mobile navigation, and footer without a local newsletter form", () => {
-    const source = readFileSync(resolve(import.meta.dirname, "..", "client/src/components/SiteFrame.tsx"), "utf8");
+    const source = readFileSync(
+      resolve(import.meta.dirname, "..", "client/src/components/SiteFrame.tsx"),
+      "utf8"
+    );
 
     expect(source).toContain('label="月光來信"');
     expect(source).toContain('label="訂閱月光來信"');
