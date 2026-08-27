@@ -21,6 +21,8 @@ const entryPaths = [
     title: "我現在需要先穩住情緒",
     description: "當心裡很亂，先用一張急救卡把注意力帶回此刻。",
     image: asset.energy,
+    width: 1664,
+    height: 2080,
     href: "/energy-cards",
     action: "打開情緒急救卡",
   },
@@ -29,6 +31,8 @@ const entryPaths = [
     title: "我想從混亂裡找到一點方向",
     description: "用每日塔羅與書寫提問，整理今天真正需要面對的事。",
     image: asset.tarot,
+    width: 1664,
+    height: 2080,
     href: "/tarot-daily",
     action: "抽一張今日指引",
   },
@@ -37,6 +41,8 @@ const entryPaths = [
     title: "我想讓自己的療癒專業被看見",
     description: "先找出定位、內容與服務承接之間，現在最需要整理的位置。",
     image: asset.innerGardenHero,
+    width: 1672,
+    height: 941,
     href: "/creator-diagnostic",
     action: "開始內容承接診斷",
   },
@@ -76,6 +82,9 @@ export default function Home() {
             className="hero-home-atmosphere"
             src={asset.homeHeroDesktop}
             alt="美心學苑創辦人 Vivi 坐在暖光與深綠植物交織的室內花園裡"
+            width={1538}
+            height={1023}
+            fetchPriority="high"
           />
         </picture>
         <div className="site-shell hero-home-grid">
@@ -145,7 +154,13 @@ export default function Home() {
               key={entry.title}
             >
               <div className="home-entry-image">
-                <img src={entry.image} alt="" loading="lazy" />
+                <img
+                  src={entry.image}
+                  alt=""
+                  width={entry.width}
+                  height={entry.height}
+                  loading="lazy"
+                />
               </div>
               <div className="home-entry-copy">
                 <span>{entry.eyebrow}</span>

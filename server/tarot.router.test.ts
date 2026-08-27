@@ -98,7 +98,7 @@ describe("tarot reading input", () => {
     expect(Object.keys(tarotArt)).toHaveLength(22);
     expect(
       tarotCards.every(card =>
-        tarotArt[card.id].includes(`/tarot-rws/${card.id}.jpg`)
+        tarotArt[card.id].includes(`/tarot-rws/${card.id}.webp`)
       )
     ).toBe(true);
     expect(page).toContain("tarotArt[card.id]");

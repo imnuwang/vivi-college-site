@@ -607,6 +607,9 @@ export default function EnergyCards() {
             alt=""
             className="ec-hero-bg"
             aria-hidden="true"
+            width={1672}
+            height={941}
+            fetchPriority="high"
           />
           <div className="ec-hero-inner">
             <div className="ec-hero-intro">
@@ -645,6 +648,8 @@ export default function EnergyCards() {
               <img
                 src={asset.energyFirstAid02}
                 alt="開口前可使用的穿搭與身體急救卡示意"
+                width={1600}
+                height={2848}
               />
               <figcaption>
                 <span>CARD 02 · VALUE</span>
@@ -776,7 +781,12 @@ export default function EnergyCards() {
           <section className="ec-recommendation">
             <span>你的推薦急救卡</span>
             <div>
-              <img src={recommendation.image} alt="" />
+              <img
+                src={recommendation.image}
+                alt=""
+                width={1600}
+                height={2848}
+              />
               <div>
                 <h2>
                   CARD {String(recommendation.id).padStart(2, "0")}｜
@@ -834,6 +844,8 @@ export default function EnergyCards() {
                 <img
                   src={card.image}
                   alt={`${card.title}的穿搭錨點示意`}
+                  width={1600}
+                  height={2848}
                   loading="lazy"
                 />
               </span>
@@ -851,7 +863,12 @@ export default function EnergyCards() {
         </section>
         <section id="energy-rescue" className="ec-rescue">
           <div className="ec-rescue-image">
-            <img src={selected.image} alt={`${selected.title}的穿搭錨點示意`} />
+            <img
+              src={selected.image}
+              alt={`${selected.title}的穿搭錨點示意`}
+              width={1600}
+              height={2848}
+            />
             <span>
               急救卡 {String(selected.id).padStart(2, "0")} / {selected.color}
             </span>
@@ -950,7 +967,13 @@ export default function EnergyCards() {
             <div className="ec-saved-list">
               {savedCards.map(card => (
                 <article key={card.id}>
-                  <img src={card.image} alt="" />
+                  <img
+                    src={card.image}
+                    alt=""
+                    width={1600}
+                    height={2848}
+                    loading="lazy"
+                  />
                   <div>
                     <span>
                       CARD {String(card.id).padStart(2, "0")} · {card.color}

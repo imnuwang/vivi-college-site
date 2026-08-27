@@ -15,6 +15,7 @@ import { Seo } from "@/components/Seo";
 import { MoonMark, SectionEyebrow } from "@/components/SiteFrame";
 import { asset, tools } from "@/data/catalog";
 import { Link } from "wouter";
+import { trackConversion } from "@/lib/analytics";
 
 export default function Tools() {
   return (
@@ -43,6 +44,9 @@ export default function Tools() {
           alt=""
           className="inner-page-hero-bg"
           aria-hidden="true"
+          width={1672}
+          height={941}
+          fetchPriority="high"
         />
         <div className="site-shell inner-page-hero-grid tools-hero-grid">
           <div className="inner-page-hero-copy">
@@ -79,7 +83,12 @@ export default function Tools() {
             </div>
           </div>
           <figure className="resource-hero-visual tools-hero-visual">
-            <img src={asset.energy} alt="暖光中的書寫、牌卡與自我整理空間" />
+            <img
+              src={asset.energy}
+              alt="暖光中的書寫、牌卡與自我整理空間"
+              width={1664}
+              height={2080}
+            />
             <figcaption>
               <span>START WHERE YOU ARE</span>
               今天先處理一個最吵的問題，就已經在往前。
@@ -152,6 +161,12 @@ export default function Tools() {
                       target="_blank"
                       rel="noreferrer"
                       className="vivi-button vivi-button-dark"
+                      onClick={() =>
+                        trackConversion("resource_download", {
+                          resource_id: tool.id,
+                          source: "tools",
+                        })
+                      }
                     >
                       {tool.action} <Download className="size-4" />
                     </a>

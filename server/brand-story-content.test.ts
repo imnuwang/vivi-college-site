@@ -22,4 +22,18 @@ describe("Vivi 真實品牌故事", () => {
     expect(about).toContain("我曾把業績做到第一");
     expect(about).not.toContain("明明");
   });
+
+  it("turns the first-hand low point and business transcript into a series", () => {
+    const firstIncome = articles.find(
+      item => item.slug === "first-six-hundred-online-business"
+    );
+    const clearContent = articles.find(
+      item => item.slug === "healing-skills-need-clear-content"
+    );
+
+    expect(firstIncome?.body.join(" ")).toContain("第一筆收入是六百元");
+    expect(firstIncome?.body.join(" ")).toContain("先生看到我真的能靠這件事產生收入");
+    expect(clearContent?.body.join(" ")).toContain("四、五個小時完成一篇 IG 內容");
+    expect(clearContent?.body.join(" ")).toContain("療癒師");
+  });
 });

@@ -8,3 +8,8 @@ export function buildLineMessageUrl(message: string) {
 export function buildLineOrderUrl(productName: string) {
   return buildLineMessageUrl(`您好，我想訂購「${productName}」。\n請提供付款資訊與數位檔案交付方式，謝謝。`);
 }
+
+export function buildLineTransitionUrl(message?: string) {
+  if (!message) return "/continue/line";
+  return `/continue/line?message=${encodeURIComponent(message)}`;
+}

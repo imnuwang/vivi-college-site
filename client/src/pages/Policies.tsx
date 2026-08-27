@@ -1,7 +1,6 @@
 import { Link } from "wouter";
 import { Seo } from "@/components/Seo";
 import { SectionEyebrow } from "@/components/SiteFrame";
-import { socialLinks } from "@/data/catalog";
 
 const updatedAt = "2026 年 8 月 27 日";
 
@@ -37,6 +36,9 @@ export default function Policies() {
           </p>
           <p>
             美心學苑不會出售你提供的個人資料。若你想查詢、更正、停止接收訊息或要求刪除美心學苑可控制的資料，請透過本頁下方的聯絡方式提出。
+          </p>
+          <p>
+            本站會記錄頁面路徑，以及 LINE、申請表、Portaly、免費下載與服務按鈕的點擊類型，用來判斷哪些入口真的有人使用。事件不包含你在 LINE、Email 或表單填寫的內容。分析工具尚未載入時，事件會暫存在目前的瀏覽器工作階段；只有在部署環境設定分析服務後，才會送往該服務。
           </p>
         </section>
 
@@ -79,9 +81,7 @@ export default function Policies() {
           <h2 id="contact-heading">聯絡方式</h2>
           <p>
             隱私、資料、預約或服務條款問題，可透過
-            <a href={socialLinks.line} target="_blank" rel="noreferrer">
-              Vivi LINE 官方帳號（另開新分頁）
-            </a>
+            <Link href="/continue/line">Vivi LINE 官方帳號</Link>
             聯絡。請不要在公開留言中留下身分證號、金融資料、病歷或其他敏感資訊。
           </p>
           <Link href="/" className="vivi-text-link">

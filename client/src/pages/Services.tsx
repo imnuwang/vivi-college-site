@@ -9,17 +9,21 @@ import {
   HeartHandshake,
   MessageCircleHeart,
 } from "lucide-react";
+import { Link } from "wouter";
 import { CtaBand } from "@/components/PagePrimitives";
 import { PortalyLeadLink } from "@/components/PortalyLeadLink";
 import { Seo } from "@/components/Seo";
 import { MoonMark, SectionEyebrow } from "@/components/SiteFrame";
-import { asset, services, socialLinks } from "@/data/catalog";
+import { asset, services } from "@/data/catalog";
+import { trackConversion } from "@/lib/analytics";
 
 const specs = [
   ["陪跑期間", "12 週，從定位、內容到服務承接分階段推進。"],
   ["支持方式", "線上一對一會談搭配文字回饋；實際頻率於適配諮詢說明。"],
   ["主要成果", "定位句、內容主題地圖、核心服務說明、內容到諮詢的承接路徑。"],
   ["適合對象", "已有助人專業或深度生命經驗，正在創作或接案的女性創作者。"],
+  ["費用說明", services[0].price],
+  ["回覆安排", services[0].followUp],
 ] as const;
 
 const process = [
@@ -86,6 +90,9 @@ export default function Services() {
           alt=""
           className="inner-page-hero-bg"
           aria-hidden="true"
+          width={1672}
+          height={941}
+          fetchPriority="high"
         />
         <div className="site-shell inner-page-hero-grid">
           <div className="inner-page-hero-copy">
@@ -99,22 +106,27 @@ export default function Services() {
               從一對一塔羅、能量整理到療癒品牌私教，每一段服務都先整理你現在真正遇到的問題，再一起確認可行的下一步。
             </p>
             <div className="inner-page-hero-actions">
-              <a
-                href={socialLinks.application}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/continue/application"
                 className="vivi-button vivi-button-light"
+                onClick={() =>
+                  trackConversion("service_cta_click", {
+                    service_id: "private-coaching",
+                    source: "services_hero",
+                  })
+                }
               >
                 申請適配諮詢 <ArrowRight className="size-4" />
-              </a>
-              <a
-                href={socialLinks.line}
-                target="_blank"
-                rel="noreferrer"
+              </Link>
+              <Link
+                href="/continue/line"
                 className="vivi-button inner-page-ghost-button"
+                onClick={() =>
+                  trackConversion("line_click", { source: "services_hero" })
+                }
               >
                 先用 LINE@ 說說現況 <MessageCircleHeart className="size-4" />
-              </a>
+              </Link>
             </div>
             <div className="inner-page-hero-note">
               <MoonMark size="sm" />
@@ -122,7 +134,12 @@ export default function Services() {
             </div>
           </div>
           <figure className="service-hero-portrait">
-            <img src={asset.viviPortrait} alt="美心學苑創辦人 Vivi" />
+            <img
+              src={asset.viviPortrait}
+              alt="美心學苑創辦人 Vivi"
+              width={1000}
+              height={1503}
+            />
             <figcaption>
               <span>Vivi｜美心學苑創辦人</span>
               先把感受與問題說清楚，選擇才不會只靠撐。
@@ -157,18 +174,28 @@ export default function Services() {
             <p>
               給已經有助人專業、內容正在做，卻卡在定位模糊、內容不轉單或報價退縮的女性創作者。這段陪跑會把你原本很靠感覺的能力，整理成受眾能理解、服務能承接的路徑。
             </p>
-            <a
-              href={socialLinks.application}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/continue/application"
               className="vivi-button vivi-button-light mt-7"
+              onClick={() =>
+                trackConversion("service_cta_click", {
+                  service_id: "private-coaching",
+                  source: "coaching_feature",
+                })
+              }
             >
               申請 1 對 1 適配諮詢 <ArrowRight className="size-4" />
-            </a>
+            </Link>
             <small>若目前不適合合作，也會直接說明更合適的下一步。</small>
           </div>
           <div className="coaching-feature-visual">
-            <img src={asset.viviPortrait} alt="Vivi" />
+            <img
+              src={asset.viviPortrait}
+              alt="Vivi"
+              width={1000}
+              height={1503}
+              loading="lazy"
+            />
             <p>
               <HeartHandshake aria-hidden="true" />
               先確認你的問題，再談適合的服務。
@@ -224,6 +251,67 @@ export default function Services() {
         </div>
       </section>
 
+      <section className="section-space service-terms-section">
+        <div className="site-shell">
+          <div className="service-section-heading">
+            <div>
+              <SectionEyebrow>BEFORE YOU BOOK</SectionEyebrow>
+              <h2 className="display-heading mt-4">預約前，先把條件看清楚。</h2>
+            </div>
+            <p>
+              目前服務依問題與合作範圍書面報價。你會在付款前看見費用、時間、方式、交付內容與回覆安排。
+            </p>
+          </div>
+          <div className="service-terms-grid">
+            {services.map(service => (
+              <article key={service.id}>
+                <p className="service-terms-eyebrow">{service.eyebrow}</p>
+                <h3>{service.title}</h3>
+                <dl>
+                  <div>
+                    <dt>費用</dt>
+                    <dd>{service.price}</dd>
+                  </div>
+                  <div>
+                    <dt>時間</dt>
+                    <dd>{service.duration}</dd>
+                  </div>
+                  <div>
+                    <dt>方式</dt>
+                    <dd>{service.format}</dd>
+                  </div>
+                  <div>
+                    <dt>你會帶走</dt>
+                    <dd>{service.delivery}</dd>
+                  </div>
+                  <div>
+                    <dt>後續回覆</dt>
+                    <dd>{service.followUp}</dd>
+                  </div>
+                </dl>
+                <div className="service-fit-grid">
+                  <div>
+                    <b>適合</b>
+                    <p>{service.suitableFor}</p>
+                  </div>
+                  <div>
+                    <b>不適合</b>
+                    <p>{service.notSuitableFor}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="service-boundary-note">
+            <CircleHelp aria-hidden="true" />
+            <p>
+              塔羅與能量整理用於自我覺察與日常整理，不替代醫療、心理治療、法律或財務專業。付款前請先閱讀
+              <Link href="/policies">取消、改期與退款說明</Link>。
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="section-space other-support-section">
         <div className="site-shell">
           <div className="service-section-heading">
@@ -248,14 +336,18 @@ export default function Services() {
                     {service.outcome}
                   </div>
                 </div>
-                <a
-                  href={socialLinks.line}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  href="/continue/line"
                   className="vivi-button vivi-button-outline"
+                  onClick={() =>
+                    trackConversion("service_cta_click", {
+                      service_id: service.id,
+                      source: "other_support",
+                    })
+                  }
                 >
                   {service.cta} <ArrowRight className="size-4" />
-                </a>
+                </Link>
               </article>
             ))}
           </div>
@@ -287,8 +379,8 @@ export default function Services() {
       <CtaBand
         title="你不需要現在就做決定，可以先讓 Vivi 了解你的現況。"
         description="填寫適配諮詢表，說明目前的定位、內容與卡點，再一起確認適合的下一步。"
-        href="/services#private-coaching"
-        label="回到私教服務"
+        href="/continue/application"
+        label="填寫適配諮詢表"
       />
     </>
   );

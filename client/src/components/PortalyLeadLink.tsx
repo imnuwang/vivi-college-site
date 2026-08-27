@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { leadCapture } from "@/data/catalog";
+import { trackConversion } from "@/lib/analytics";
 
 type PortalyLeadLinkProps = {
   label?: string;
@@ -16,7 +17,13 @@ export function PortalyLeadLink({
   className = "vivi-button vivi-button-dark",
 }: PortalyLeadLinkProps) {
   return (
-    <a href={leadCapture.url} target="_blank" rel="noreferrer" className={className}>
+    <a
+      href="/continue/portaly"
+      className={className}
+      onClick={() =>
+        trackConversion("portaly_open", { source: "site_cta" })
+      }
+    >
       {label} <ArrowRight className="size-4" />
     </a>
   );

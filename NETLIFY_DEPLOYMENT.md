@@ -41,4 +41,6 @@
 | `VITE_ANALYTICS_ENDPOINT` | Umami 分析端點 |
 | `VITE_ANALYTICS_WEBSITE_ID` | Umami 網站識別碼 |
 
+網站已記錄 `page_view`、服務 CTA、LINE、Google 表單、Portaly 與免費下載事件。只有同時設定上述兩個變數時，事件才會送到 Umami；未設定時不會載入第三方分析程式。
+
 其餘 Manus OAuth、資料庫與內建後端環境變數不適用於目前的純靜態 Netlify 前端。如需登入或資料庫，再另行完成 Netlify Functions 或外部後端遷移。

@@ -20,7 +20,8 @@ import {
   type DiagnosticKey,
 } from "@/data/creatorDiagnostic";
 import { asset } from "@/data/catalog";
-import { buildLineMessageUrl } from "@/lib/lineOrder";
+import { buildLineTransitionUrl } from "@/lib/lineOrder";
+import { trackConversion } from "@/lib/analytics";
 
 type CopyState = "idle" | "copied" | "error";
 
@@ -256,12 +257,16 @@ export default function CreatorDiagnostic() {
                       前往對應工具 <ArrowRight className="size-4" />
                     </Link>
                     <a
-                      href={buildLineMessageUrl(
+                      href={buildLineTransitionUrl(
                         `我剛完成內容承接診斷，結果是「${result.label}」。我想知道適合我的下一步。`
                       )}
-                      target="_blank"
-                      rel="noreferrer"
                       className="vivi-button vivi-button-line"
+                      onClick={() =>
+                        trackConversion("line_click", {
+                          source: "creator_diagnostic_result",
+                          result: result.key,
+                        })
+                      }
                     >
                       到 LINE 釐清下一步 <MessageCircle className="size-4" />
                     </a>

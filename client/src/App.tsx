@@ -16,7 +16,9 @@ import CreatorDiagnostic from "./pages/CreatorDiagnostic";
 import EnergyCards from "./pages/EnergyCards";
 import ResourceLibrary from "./pages/ResourceLibrary";
 import Policies from "./pages/Policies";
+import ExternalStep from "./pages/ExternalStep";
 import { SiteFrame } from "./components/SiteFrame";
+import { Analytics } from "./components/Analytics";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -35,6 +37,7 @@ function Router() {
         <Route path={"/resources/:resourceId"} component={ResourceLibrary} />
         <Route path={"/about"} component={About} />
         <Route path={"/policies"} component={Policies} />
+        <Route path={"/continue/:destination"} component={ExternalStep} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
@@ -54,6 +57,7 @@ function App() {
         defaultTheme="light"
         // switchable
       >
+        <Analytics />
         <TooltipProvider>
           <Toaster richColors position="top-center" />
           <Router />

@@ -134,6 +134,8 @@ function RitualCard({
             <img
               src={tarotArt[card.id]}
               alt={`經典 Rider–Waite–Smith 塔羅牌：${card.name}`}
+              width={600}
+              height={1040}
             />
             <div className="tarot-card-front-overlay">
               <span>MAJOR ARCANA</span>
@@ -263,6 +265,9 @@ export default function TarotDaily() {
           alt=""
           className="inner-page-hero-bg"
           aria-hidden="true"
+          width={1672}
+          height={941}
+          fetchPriority="high"
         />
         <div className="site-shell inner-page-hero-grid tarot-hero-grid">
           <div className="inner-page-hero-copy">
@@ -295,6 +300,8 @@ export default function TarotDaily() {
             <img
               src={tarotArt[tarotCards[0].id]}
               alt={`經典 Rider–Waite–Smith 塔羅牌：${tarotCards[0].name}`}
+              width={600}
+              height={1040}
             />
             <figcaption>
               <span>ONE CARD A DAY</span>

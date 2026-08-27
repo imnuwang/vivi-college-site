@@ -25,6 +25,16 @@ const routes = [
     "Vivi 從高壓工作、害怕人群到重新整理生活方向的親身故事。",
   ],
   [
+    "/journal/first-six-hundred-online-business",
+    "第一筆 600 元，讓我知道在家也能替自己開一條路",
+    "從不敢告訴家人，到 600 元、3,000 元的網拍收入。小小的結果，讓一個放了很久的創業念頭開始被相信。",
+  ],
+  [
+    "/journal/healing-skills-need-clear-content",
+    "學會療癒之後，我才發現會做和被理解有一段距離",
+    "有了療癒工具，也想幫助別人，陌生人卻不知道你能處理什麼。這是 Vivi 為什麼重新學內容與自媒體。",
+  ],
+  [
     "/journal/love-tarot-question",
     "感情卡住時，先別急著問他還愛不愛我",
     "用更具體的問題整理感情裡的期待、界線與下一步。",
@@ -104,6 +114,30 @@ const routes = [
     "隱私與服務條款",
     "了解美心學苑網站如何使用資料、外部服務，以及預約、取消、改期與退款的處理方式。",
   ],
+  [
+    "/continue/line",
+    "前往 Vivi LINE 官方帳號",
+    "前往 LINE 前，先確認資料用途、服務條件與需要準備的資訊。",
+    "noindex,follow",
+  ],
+  [
+    "/continue/application",
+    "前往 1 對 1 適配諮詢表",
+    "前往 Google 表單前，先了解申請流程、資料用途與服務成立方式。",
+    "noindex,follow",
+  ],
+  [
+    "/continue/portaly",
+    "前往 Portaly 月光來信",
+    "前往 Portaly 前，先了解 Email 用途與免費工具的其他使用方式。",
+    "noindex,follow",
+  ],
+  [
+    "/continue/complete",
+    "完成外部步驟",
+    "從 LINE、Google 表單或 Portaly 回到美心學苑後，確認接下來的安排。",
+    "noindex,follow",
+  ],
 ];
 
 function escapeHtml(value) {
@@ -125,7 +159,7 @@ function upsertMeta(html, attribute, key, content) {
     : html.replace("</head>", `    ${tag}\n  </head>`);
 }
 
-function renderRoute(routePath, title, description) {
+function renderRoute(routePath, title, description, robots = "index,follow") {
   const url = `${baseUrl}${routePath}`;
   const fullTitle = `${title}｜${brandName}`;
   let html = shell.replace(
@@ -133,7 +167,7 @@ function renderRoute(routePath, title, description) {
     `<title>${escapeHtml(fullTitle)}</title>`
   );
   html = upsertMeta(html, "name", "description", description);
-  html = upsertMeta(html, "name", "robots", "index,follow");
+  html = upsertMeta(html, "name", "robots", robots);
   html = upsertMeta(html, "property", "og:title", fullTitle);
   html = upsertMeta(html, "property", "og:description", description);
   html = upsertMeta(html, "property", "og:url", url);
@@ -151,13 +185,17 @@ function renderRoute(routePath, title, description) {
   return html;
 }
 
-for (const [routePath, title, description] of routes) {
+for (const [routePath, title, description, robots] of routes) {
   const target =
     routePath === "/"
       ? sourcePath
       : path.join(outputDir, routePath.slice(1), "index.html");
   await mkdir(path.dirname(target), { recursive: true });
-  await writeFile(target, renderRoute(routePath, title, description), "utf8");
+  await writeFile(
+    target,
+    renderRoute(routePath, title, description, robots),
+    "utf8"
+  );
 }
 
 console.log(`Generated static metadata for ${routes.length} public routes.`);

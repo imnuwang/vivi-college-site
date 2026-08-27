@@ -21,14 +21,13 @@ describe("Portaly lead capture configuration", () => {
     expect(leadCapture.provider).toBe("Portaly");
   });
 
-  it("renders a secure external Portaly CTA", () => {
+  it("routes Portaly CTAs through the local data-use transition page", () => {
     const markup = renderToStaticMarkup(
       createElement(PortalyLeadLink, { label: "測試 CTA" })
     );
 
-    expect(markup).toContain(`href="${leadCapture.url}"`);
-    expect(markup).toContain('target="_blank"');
-    expect(markup).toContain('rel="noreferrer"');
+    expect(markup).toContain('href="/continue/portaly"');
+    expect(markup).not.toContain('target="_blank"');
     expect(markup).toContain("測試 CTA");
   });
 
@@ -55,7 +54,7 @@ describe("Portaly lead capture configuration", () => {
     expect(home).toContain("我想讓專業被看見");
   });
 
-  it("uses direct Portaly links for the header, mobile navigation, and footer without a local newsletter form", () => {
+  it("uses the shared Portaly transition link in the header, mobile navigation, and footer without a local newsletter form", () => {
     const source = readFileSync(
       resolve(import.meta.dirname, "..", "client/src/components/SiteFrame.tsx"),
       "utf8"

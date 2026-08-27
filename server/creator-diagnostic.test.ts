@@ -36,7 +36,7 @@ describe("療癒型創作者內容承接診斷", () => {
         .key
     ).toBe("content");
     expect(pageSource).toContain("PortalyLeadLink");
-    expect(pageSource).toContain("buildLineMessageUrl");
+    expect(pageSource).toContain("buildLineTransitionUrl");
     expect(pageSource).toContain("重新診斷");
   });
 

@@ -8,6 +8,7 @@ import { ArrowRight, Instagram, Menu, X } from "lucide-react";
 import { PortalyLeadLink } from "@/components/PortalyLeadLink";
 import { asset, navItems, socialLinks } from "@/data/catalog";
 import { cn } from "@/lib/utils";
+import { trackConversion, trackPageView } from "@/lib/analytics";
 
 export function SectionEyebrow({
   children,
@@ -29,6 +30,8 @@ export function MoonMark({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
     <img
       src={asset.seal}
       alt="VIVI COLLEGE 美心學苑月星印記"
+      width={256}
+      height={256}
       className={cn("moon-mark", `moon-mark-${size}`)}
     />
   );
@@ -66,6 +69,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
         const heading = main?.querySelector("h1")?.textContent?.trim();
         setRouteAnnouncement(`${heading || "新頁面"}已載入`);
       }
+      trackPageView(window.location.pathname, document.title);
     });
     return () => window.cancelAnimationFrame(frame);
   }, [location]);
@@ -225,26 +229,34 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
                 href={socialLinks.instagram}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() =>
+                  trackConversion("outbound_continue", {
+                    destination: "instagram",
+                    source: "footer",
+                  })
+                }
               >
                 <Instagram className="size-4" />
                 Instagram @vivi_college
               </a>
-              <a
+              <Link
                 className="footer-link"
-                href={socialLinks.line}
-                target="_blank"
-                rel="noreferrer"
+                href="/continue/line"
+                onClick={() =>
+                  trackConversion("line_click", { source: "footer" })
+                }
               >
                 加入 Vivi Line@
-              </a>
-              <a
+              </Link>
+              <Link
                 className="footer-link"
-                href={socialLinks.application}
-                target="_blank"
-                rel="noreferrer"
+                href="/continue/application"
+                onClick={() =>
+                  trackConversion("application_open", { source: "footer" })
+                }
               >
                 申請 1 對 1 適配諮詢
-              </a>
+              </Link>
             </div>
           </div>
         </div>
