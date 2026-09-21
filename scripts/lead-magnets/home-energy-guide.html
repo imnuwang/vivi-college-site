@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居家能量佈置清單</title>
+<style>
+  @page {
+    size: 210mm 2970mm;
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #1a2a22;
+    color: #f5f0e8;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ─── Color tokens ─── */
+  :root {
+    --bg-deep: #1a2a22;
+    --bg-card: #223830;
+    --bg-highlight: #2a4438;
+    --cream: #f5f0e8;
+    --cream-muted: #d4cfc5;
+    --gold: #c9a96e;
+    --gold-light: #dfc08a;
+    --gold-dim: #8a7a52;
+    --green-accent: #5a8a6a;
+    --border: rgba(201, 169, 110, 0.25);
+    --border-strong: rgba(201, 169, 110, 0.5);
+  }
+
+  .container {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: linear-gradient(170deg, #0f1e16 0%, #1a2a22 40%, #223830 100%);
+    padding: 80px 48px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.08) 0%, transparent 70%);
+  }
+
+  .cover-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 6px 20px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 2px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .cover h1 span {
+    color: var(--gold);
+  }
+
+  .cover .subtitle {
+    font-size: 16px;
+    color: var(--cream-muted);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .cover-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 32px;
+    position: relative;
+  }
+
+  .cover-author {
+    font-size: 13px;
+    color: var(--gold-dim);
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section {
+    padding: 56px 48px;
+    position: relative;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .section-number {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .section-title span {
+    color: var(--gold);
+  }
+
+  .section-lead {
+    font-size: 14px;
+    color: var(--cream-muted);
+    margin-bottom: 32px;
+    line-height: 1.8;
+  }
+
+  /* ─── INTRO ─── */
+  .intro-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+
+  .intro-box p {
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 2;
+    margin-bottom: 12px;
+  }
+
+  .intro-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .intro-box strong {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .intro-signature {
+    text-align: right;
+    font-size: 13px;
+    color: var(--gold-dim);
+    margin-top: 16px;
+    font-style: italic;
+  }
+
+  /* ─── TOOL CARDS ─── */
+  .tool-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gold);
+  }
+
+  .tool-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+
+  .tool-science {
+    font-size: 13px;
+    color: var(--green-accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .tool-desc {
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 1.9;
+    margin-bottom: 12px;
+  }
+
+  .tool-action {
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 600;
+    padding: 8px 16px;
+    background: rgba(201,169,110,0.08);
+    border: 1px solid var(--border);
+    display: inline-block;
+  }
+
+  /* ─── MATRIX TABLE ─── */
+  .matrix-wrapper {
+    overflow-x: auto;
+    margin-bottom: 32px;
+  }
+
+  .matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .matrix th {
+    background: var(--bg-highlight);
+    color: var(--gold-light);
+    font-weight: 600;
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-strong);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .matrix td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--cream-muted);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+
+  .matrix tr:last-child td {
+    border-bottom: none;
+  }
+
+  .matrix .highlight-cell {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  /* ─── CHECKLIST ─── */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+
+  .checklist li {
+    padding: 14px 0 14px 36px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .checklist li::before {
+    content: '□';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    font-size: 16px;
+    color: var(--gold);
+  }
+
+  .checklist li:last-child {
+    border-bottom: none;
+  }
+
+  .checklist li strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ─── SOP FLOW ─── */
+  .sop-step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+
+  .sop-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(201,169,110,0.12);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .sop-content {
+    flex: 1;
+  }
+
+  .sop-content h4 {
+    font-size: 15px;
+    color: var(--cream);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .sop-content p {
+    font-size: 13px;
+    color: var(--cream-muted);
+    line-height: 1.8;
+  }
+
+  /* ─── QUOTE BOX ─── */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(201,169,110,0.06), rgba(201,169,110,0.02));
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+
+  .quote-box p {
+    font-size: 16px;
+    color: var(--cream);
+    font-weight: 600;
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .quote-box .quote-attr {
+    font-size: 12px;
+    color: var(--gold-dim);
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 8px;
+  }
+
+  /* ─── CALLOUT ─── */
+  .callout {
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-strong);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .callout-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .callout p {
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 1.8;
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    background: linear-gradient(170deg, #223830 0%, #1a2a22 100%);
+    padding: 56px 48px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .cta-section h2 span {
+    color: var(--gold);
+  }
+
+  .cta-section p {
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 1.9;
+    margin-bottom: 16px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: var(--gold);
+    color: var(--bg-deep);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    transition: background 0.3s;
+  }
+
+  .cta-btn:hover {
+    background: var(--gold-light);
+  }
+
+  .cta-link {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--gold-dim);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-top: 8px;
+  }
+
+  .cta-link:hover {
+    color: var(--gold);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: 32px 48px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--gold-dim);
+    letter-spacing: 1px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer a {
+    color: var(--gold-dim);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ─── UTILITY ─── */
+  .spacer-sm { height: 16px; }
+  .spacer-md { height: 32px; }
+
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    color: var(--gold-dim);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    letter-spacing: 0.5px;
+  }
+
+  a {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ═══════════ COVER ═══════════ -->
+  <div class="cover">
+    <div class="cover-tag">VIVI COLLEGE</div>
+    <h1>家裡放這 <span>6</span> 樣<br>睡著就在<span>淨化能量</span></h1>
+    <p class="subtitle">居家能量佈置清單<br>給想把空間變成療癒場的你</p>
+    <div class="cover-line"></div>
+    <div class="cover-author">by Vivi｜SRT 能量療癒師 × IG 品牌私教</div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════ INTRO ═══════════ -->
+  <section>
+    <div class="section-number">ABOUT VIVI</div>
+    <div class="section-title">在教別人佈置能量場之前<br>我先把自己的<span>廢墟</span>重建了一遍</div>
+    <div class="spacer-sm"></div>
+
+    <div class="intro-box">
+      <p>
+        2020 年，我經歷了一場背叛，嚴重到恐慌症發作、身體完全失控。<br>
+        那時候沒有人告訴我「能量」是什麼，我只知道自己在碎裂。
+      </p>
+      <p>
+        後來接觸了 <strong>SRT 靈魂反應療法</strong>，不是雞湯、不是正能量喊話——<br>
+        是真正地去清理那些卡在潛意識裡、讓我反覆崩潰的程式。<br>
+        花了兩年，我把自己從廢墟裡撿回來。
+      </p>
+      <p>
+        現在我做兩件事：<br>
+        <strong>用 SRT 幫人清理能量</strong>，和<strong>用品牌私教幫療癒師把天賦變成收入</strong>。<br>
+        這份清單，是我自己每天在用的居家佈置邏輯。不是裝飾建議，是實戰工具。
+      </p>
+    </div>
+
+    <div class="intro-signature">— Vivi</div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════ PART 1: 6 TOOLS ═══════════ -->
+  <section>
+    <div class="section-number">PART 01</div>
+    <div class="section-title">6 個居家能量工具<span>｜</span>科學 × 能量雙重解讀</div>
+    <p class="section-lead">每一樣你可能已經有了。差別不在有沒有，在你會不會用。</p>
+
+    <div class="tool-card">
+      <div class="tool-name">01｜喜馬拉雅鹽燈</div>
+      <div class="tool-science">科學面：釋放負離子，中和電器產生的正離子輻射</div>
+      <p class="tool-desc">
+        橘色光波的頻率對應臍輪（第二脈輪），跟安全感、歸屬感直接相關。<br>
+        點亮鹽燈不只是「氣氛」——它在幫你的空間做能量接地。
+      </p>
+      <div class="tool-action">放在你待最久的角落，睡前開、醒來關</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">02｜透明水晶（白水晶）</div>
+      <div class="tool-science">科學面：石英的壓電效應，震盪頻率穩定到能驅動手錶機芯</div>
+      <p class="tool-desc">
+        水晶不「給」你能量。它做的事更精準——<br>
+        幫你把散掉的頻率重新校準，像一個隨時在線的頻率穩定器。
+      </p>
+      <div class="tool-action">放在床頭，讓它替你守夜</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">03｜薰衣草精油</div>
+      <div class="tool-science">科學面：吸入後 15 分鐘，皮質醇下降、心率減緩</div>
+      <p class="tool-desc">
+        嗅覺是五感中唯一不經過大腦皮層過濾的感官。<br>
+        意思是：精油繞過你的理性腦，直接跟潛意識對話。<br>
+        這就是為什麼療癒師做個案時會用精油——它比語言更快抵達。
+      </p>
+      <div class="tool-action">睡前滴 2 滴在枕頭邊緣</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">04｜白鼠尾草</div>
+      <div class="tool-science">科學面：燃燒後可清除空氣中 94% 的細菌，效果持續 24 小時</div>
+      <p class="tool-desc">
+        北美原住民用了幾千年的空間淨化工具。<br>
+        煙走過的地方，滯留的能量就散了——不管那是爭吵的殘留、焦慮的氣場、還是前一個來訪者帶進來的情緒。
+      </p>
+      <div class="tool-action">搬新家、吵完架、心情悶的時候燒一束</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">05｜432Hz 音頻</div>
+      <div class="tool-science">科學面：研究顯示能降低焦慮指數、穩定自律神經</div>
+      <p class="tool-desc">
+        432Hz 被稱為「地球的心跳」——它是地球本身的舒曼共振頻率。<br>
+        播放它的時候，你的身體會開始跟大地的振動同步。不是冥想，但效果像冥想。
+      </p>
+      <div class="tool-action">YouTube 搜「432Hz sleep」，今晚放著睡</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">06｜室內植物（虎尾蘭 / 白鶴芋）</div>
+      <div class="tool-science">科學面：NASA 認證的空氣淨化植物，夜間釋放氧氣、吸收有毒揮發物</div>
+      <p class="tool-desc">
+        虎尾蘭是少數在夜間仍然釋放氧氣的植物，等於你睡覺時有一台天然空氣清淨機。<br>
+        白鶴芋會吸收傢俱在夜間釋放的甲醛和 VOC。<br>
+        活的植物本身就是一個能量體——它在生長，就是在流動。
+      </p>
+      <div class="tool-action">臥室放虎尾蘭，客廳放白鶴芋</div>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════ PART 2: PLACEMENT MATRIX ═══════════ -->
+  <section>
+    <div class="section-number">PART 02</div>
+    <div class="section-title">居家能量佈置<span>對焦矩陣</span></div>
+    <p class="section-lead">不是全部買齊就有用。對的工具放在對的位置，才會啟動。</p>
+
+    <div class="matrix-wrapper">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>空間</th>
+            <th>核心需求</th>
+            <th>首選工具</th>
+            <th>佈置方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="highlight-cell">臥室</td>
+            <td>深層修復、安全感</td>
+            <td>虎尾蘭 + 白水晶 + 薰衣草精油</td>
+            <td>虎尾蘭靠窗、水晶放床頭、精油滴枕邊</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell">客廳</td>
+            <td>接地、中和外來能量</td>
+            <td>鹽燈 + 白鶴芋</td>
+            <td>鹽燈放沙發旁、白鶴芋放門口附近</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell">工作區</td>
+            <td>頻率校準、專注</td>
+            <td>白水晶 + 432Hz 音頻</td>
+            <td>水晶放電腦旁、音頻用耳機低音量播放</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell">療癒個案室</td>
+            <td>空間清理、能量重設</td>
+            <td>白鼠尾草 + 鹽燈 + 精油</td>
+            <td>每位個案前後燒鼠尾草、鹽燈常開、精油擴香</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell">玄關</td>
+            <td>阻擋外部混雜能量</td>
+            <td>黑碧璽 / 黑曜石（小顆即可）</td>
+            <td>放在鞋櫃上或門邊，定期用鼠尾草清理</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">VIVI 的實戰心得</div>
+      <p>
+        很多人把水晶精油鹽燈全部堆在同一個角落，覺得「越多越好」。<br>
+        但能量佈置跟室內設計一樣——重點不是數量，是<strong>流動</strong>。<br>
+        每個空間只需要解決一個核心問題，放一到兩樣就夠了。
+      </p>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════ PART 3: SOP ═══════════ -->
+  <section>
+    <div class="section-number">PART 03</div>
+    <div class="section-title">每週能量維護 <span>SOP</span></div>
+    <p class="section-lead">擺好了不維護，等於買了健身房會員卡不去。<br>能量工具需要定期清理跟重新校準，不然它會把吸收到的雜質留在你的空間裡。</p>
+
+    <div class="sop-step">
+      <div class="sop-number">1</div>
+      <div class="sop-content">
+        <h4>週一｜空間煙燻淨化</h4>
+        <p>點燃白鼠尾草，從玄關開始，順時針走一圈。<br>窗戶打開一條縫，讓煙帶著舊能量離開。</p>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="sop-number">2</div>
+      <div class="sop-content">
+        <h4>週三｜水晶歸零</h4>
+        <p>把水晶放在流動的水下沖洗 30 秒（透明水晶適用，部分水晶不能碰水）。<br>或放在窗邊曬月光一晚。重新設定你的意圖。</p>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="sop-number">3</div>
+      <div class="sop-content">
+        <h4>週五｜精油輪替</h4>
+        <p>每週換一次精油種類，避免嗅覺疲勞。<br>薰衣草（放鬆）→ 乳香（靈性連結）→ 檀香（接地）→ 輪替使用。</p>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="sop-number">4</div>
+      <div class="sop-content">
+        <h4>週日｜3 分鐘空間校準</h4>
+        <p>站在家的中心點，閉眼，三次深呼吸。<br>感受空間的能量流動。哪裡覺得「悶」，下週就多關注那個角落。</p>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <p>「療癒不是你缺了什麼，<br>是你忘了身邊有什麼。」</p>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════ PART 4: SELF-CHECK ═══════════ -->
+  <section>
+    <div class="section-number">PART 04</div>
+    <div class="section-title">你的空間能量<span>健檢表</span></div>
+    <p class="section-lead">花 2 分鐘勾一遍。超過 4 個沒打勾，你的空間正在消耗你，而不是滋養你。</p>
+
+    <ul class="checklist">
+      <li><strong>臥室有至少一株活的植物</strong>，而且它是健康的（葉子沒有發黃枯萎）</li>
+      <li><strong>睡覺的房間完全遮光</strong>，沒有電器待機的藍光紅光</li>
+      <li><strong>床頭沒有堆雜物</strong>，能量在床的四周可以流動</li>
+      <li><strong>玄關有意識地放了一個「能量守門員」</strong>（水晶、鹽燈、植物都算）</li>
+      <li><strong>家裡至少每週做一次空間清理</strong>（開窗通風、燒鼠尾草、或播放淨化音頻）</li>
+      <li><strong>工作區跟休息區有物理性的分隔</strong>，不在床上工作</li>
+      <li><strong>手機不放在床頭充電</strong>（電磁波 + 通知焦慮的雙重干擾）</li>
+      <li><strong>家裡有一個「只屬於你的角落」</strong>，專門用來靜心、冥想或發呆</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">給療癒師的額外思考</div>
+      <p>
+        如果你自己的空間都沒有在對的狀態，你拿什麼去幫個案清理？<br>
+        療癒師最常犯的錯：把所有能量都給了別人，自己的場卻一團亂。<br>
+        <strong>先佈置好自己的空間，才有資格教別人。</strong>
+      </p>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════ CTA ═══════════ -->
+  <div class="cta-section">
+    <div class="section-number">NEXT STEP</div>
+    <div class="spacer-sm"></div>
+
+    <h2>如果你是療癒師，<br>而且你已經知道自己有天賦——</h2>
+
+    <p>
+      你現在卡住的，不是「能不能療癒」。<br>
+      是不知道怎麼讓對的人看見你、信任你、願意付費找你。
+    </p>
+    <p>
+      定位不清楚、內容寫不出來、有能力但不知道怎麼轉化成收入——<br>
+      這不是你不夠好，是沒有人幫你把「抽象的天賦」翻譯成「市場看得懂的語言」。
+    </p>
+    <p>
+      我的一對一品牌私教陪跑，專門做這件事。<br>
+      不是教你「怎麼發文」，是幫你從定位、內容、到高客單轉化，<br>
+      建立一個完整的個人品牌變現系統。
+    </p>
+    <p style="font-size: 13px; color: var(--gold-dim); margin-top: 8px;">
+      這不是免費諮詢入口。是精準合作對象的篩選入口。
+    </p>
+
+    <a href="https://forms.gle/i5fUrxmJ4rw55cfKA" class="cta-btn">立即開始靈魂定位診斷問卷</a>
+
+    <br>
+
+    <a href="https://vivicollege.com" class="cta-link">了解 Vivi 的療癒品牌陪跑 →</a>
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <div class="footer">
+    <p>© VIVI COLLEGE｜SRT 能量療癒 × IG 品牌私教</p>
+    <p style="margin-top: 4px;"><a href="https://vivicollege.com">vivicollege.com</a></p>
+  </div>
+
+</div>
+</body>
+</html>
